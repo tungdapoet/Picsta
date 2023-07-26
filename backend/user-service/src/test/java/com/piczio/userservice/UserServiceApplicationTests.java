@@ -1,10 +1,10 @@
-package com.example.user;
+package com.piczio.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserApplicationTests {
+class UserServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

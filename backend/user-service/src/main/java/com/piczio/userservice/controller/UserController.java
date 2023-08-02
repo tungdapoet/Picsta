@@ -1,54 +1,30 @@
 package com.piczio.userservice.controller;
 
-import com.piczio.userservice.entity.User;
+import com.piczio.userservice.dto.UserRequestDto;
+import com.piczio.userservice.dto.UserResponseDto;
 import com.piczio.userservice.service.UserService;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
-@AllArgsConstructor
-@RequestMapping("api/users")
+@RequestMapping("api/v1/management")
+@RequiredArgsConstructor
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
-    @PostMapping("create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(userService.createUser(user));
+    @GetMapping("detail")
+    public UserResponseDto getUser(@RequestBody UserRequestDto request) {
+        return userService.getUser(request);
     }
 
-    @PatchMapping("update")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(userService.updateUser(user));
-    }
-
-    @PatchMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) {
-        userService.deleteUser(userId);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body("User deleted successfully!");
-    }
-
-    @GetMapping("{id}")
-    public ResponseEntity<Optional<User>> getUserById(@PathVariable("id") Long userId) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(userService.getUserById(userId));
-    }
-
-    @GetMapping("all")
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(userService.getAllUsers());
+    @GetMapping
+    public List<UserResponseDto> getAllUsers() {
+        return userService.getAllUsers();
     }
 }

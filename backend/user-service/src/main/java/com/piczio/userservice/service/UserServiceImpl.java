@@ -1,40 +1,40 @@
 package com.piczio.userservice.service;
 
-import com.piczio.userservice.entity.User;
+import com.piczio.userservice.dto.UserRequestDto;
+import com.piczio.userservice.dto.UserResponseDto;
+import com.piczio.userservice.mapper.UserMapper;
 import com.piczio.userservice.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+
     @Override
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public UserResponseDto getUser(UserRequestDto userRequestDto) {
+        var user = userRepository.findByEmail(userRequestDto.getEmail())
+                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + userRequestDto.getEmail()));
+
+        return UserResponseDto
+                .builder()
+                .email(user.getEmail())
+                .name(user.getName())
+                .build();
     }
 
     @Override
-    public User updateUser(User updatedUser) {
-        return userRepository.save(updatedUser);
-    }
-
-    @Override
-    public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
-    }
-
-    @Override
-    public Optional<User> getUserById(Long userId) {
-        return userRepository.findById(userId);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponseDto> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(UserMapper::mapToUserResponseDto)
+                .collect(Collectors.toList());
     }
 }

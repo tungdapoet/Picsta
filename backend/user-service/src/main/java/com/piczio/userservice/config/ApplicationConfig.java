@@ -1,6 +1,6 @@
 package com.piczio.userservice.config;
 
-import com.piczio.userservice.repository.UserRepository;
+import com.piczio.userservice.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

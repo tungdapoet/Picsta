@@ -1,6 +1,6 @@
-package com.piczio.userservice.repository;
+package com.piczio.userservice.user.repository;
 
-import com.piczio.userservice.entity.User;
+import com.piczio.userservice.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

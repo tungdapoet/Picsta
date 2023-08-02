@@ -1,4 +1,4 @@
-package com.piczio.userservice.auth.dto;
+package com.piczio.userservice.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterResponseDto {
-
-    private String token;
+public class UserRequestDto {
+    private String email;
 }

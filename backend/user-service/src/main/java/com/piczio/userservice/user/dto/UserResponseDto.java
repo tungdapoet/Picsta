@@ -1,4 +1,4 @@
-package com.piczio.userservice.dto;
+package com.piczio.userservice.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequestDto {
+public class UserResponseDto {
     private String email;
+
+    private String firstName;
+
+    private String lastName;
 }

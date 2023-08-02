@@ -1,5 +1,6 @@
 package com.piczio.userservice.auth.dto;
 
+import com.piczio.userservice.user.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequestDto {
+
+    private String firstName;
+
+    private String lastName;
+
     private String email;
 
     private String password;
 
-    private String name;
+    private Role role;
 }

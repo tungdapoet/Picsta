@@ -1,7 +1,7 @@
-package com.piczio.userservice.service;
+package com.piczio.userservice.user.service;
 
-import com.piczio.userservice.dto.UserRequestDto;
-import com.piczio.userservice.dto.UserResponseDto;
+import com.piczio.userservice.user.dto.UserRequestDto;
+import com.piczio.userservice.user.dto.UserResponseDto;
 
 import java.util.List;
 

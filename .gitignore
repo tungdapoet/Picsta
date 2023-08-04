@@ -1,1 +1,7 @@
 .idea
+target
+
+*.jar
+mvnw
+mvnw.cmd
+*.iml

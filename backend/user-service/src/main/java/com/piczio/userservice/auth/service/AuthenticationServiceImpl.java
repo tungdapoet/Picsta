@@ -5,22 +5,27 @@ import com.piczio.userservice.auth.dto.AuthenticationRequestDto;
 import com.piczio.userservice.auth.dto.RegisterRequestDto;
 import com.piczio.userservice.auth.dto.AuthenticationResponseDto;
 import com.piczio.userservice.config.JwtService;
+import com.piczio.userservice.exception.AuthenticationFailedException;
+import com.piczio.userservice.exception.EmailAlreadyExistsException;
+import com.piczio.userservice.exception.ResourceNotFoundException;
 import com.piczio.userservice.user.entity.User;
 import com.piczio.userservice.user.repository.UserRepository;
 import com.piczio.userservice.token.entity.Token;
 import com.piczio.userservice.token.repository.TokenRepository;
 import com.piczio.userservice.token.types.TokenType;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -36,56 +41,70 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
 
+
+    private User getUserFromRepository(String email) {
+        return userRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+    }
+
     @Override
     public AuthenticationResponseDto register(RegisterRequestDto registerRequestDto) {
-        var user = User.builder()
-                .firstName(registerRequestDto.getFirstName())
-                .lastName(registerRequestDto.getLastName())
-                .email(registerRequestDto.getEmail())
-                .password(passwordEncoder.encode(registerRequestDto.getPassword()))
-                .role(registerRequestDto.getRole())
-                .build();
+        try {
+            User user = User.builder()
+                    .firstName(registerRequestDto.getFirstName())
+                    .lastName(registerRequestDto.getLastName())
+                    .email(registerRequestDto.getEmail())
+                    .password(passwordEncoder.encode(registerRequestDto.getPassword()))
+                    .role(registerRequestDto.getRole())
+                    .build();
 
-        var savedUser = userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
+            User savedUser = userRepository.save(user);
+            String jwtToken = jwtService.generateToken(user);
+            String refreshToken = jwtService.generateRefreshToken(user);
 
-        saveUserToken(savedUser, jwtToken);
+            saveUserToken(savedUser, jwtToken);
 
-        return AuthenticationResponseDto.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+            return AuthenticationResponseDto.builder()
+                    .accessToken(jwtToken)
+                    .refreshToken(refreshToken)
+                    .build();
+        } catch (DataIntegrityViolationException e) {
+            throw new EmailAlreadyExistsException("Email is already exists");
+        }
     }
 
 
     @Override
     public AuthenticationResponseDto authenticate(AuthenticationRequestDto authenticationRequestDto) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authenticationRequestDto.getEmail(),
-                        authenticationRequestDto.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            authenticationRequestDto.getEmail(),
+                            authenticationRequestDto.getPassword()
+                    )
+            );
 
-        var user = userRepository
-                .findByEmail(authenticationRequestDto.getEmail())
-                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + authenticationRequestDto.getEmail()));
-        var jwtToken = jwtService.generateToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
+            User user = getUserFromRepository(authenticationRequestDto.getEmail());
 
-        revokeAllUserTokens(user);
-        saveUserToken(user, jwtToken);
+            String jwtToken = jwtService.generateToken(user);
+            String refreshToken = jwtService.generateRefreshToken(user);
 
-        return AuthenticationResponseDto.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+            revokeAllUserTokens(user);
+            saveUserToken(user, jwtToken);
+
+            return AuthenticationResponseDto.builder()
+                    .accessToken(jwtToken)
+                    .refreshToken(refreshToken)
+                    .build();
+        } catch (BadCredentialsException e) {
+            throw new AuthenticationFailedException("Authentication failed!");
+        }
     }
 
     @Override
     public void saveUserToken(User user, String jwtToken) {
-        var token = Token.builder()
+        Token token = Token.builder()
                 .user(user)
                 .token(jwtToken)
                 .tokenType(TokenType.BEARER)
@@ -98,7 +117,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public void revokeAllUserTokens(User user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+        List<Token> validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
 
         if (validUserTokens.isEmpty()) return;
 
@@ -125,17 +144,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userEmail = jwtService.extractUsername(refreshToken);
 
         if (userEmail != null) {
-            var user = this.userRepository
-                    .findByEmail(userEmail)
-                    .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + userEmail));
+            User user = getUserFromRepository(userEmail);
 
             if (jwtService.isTokenValid(refreshToken, user)) {
-                var accessToken = jwtService.generateToken(user);
+                String accessToken = jwtService.generateToken(user);
 
                 revokeAllUserTokens(user);
                 saveUserToken(user, accessToken);
 
-                var authResponse = AuthenticationResponseDto.builder()
+                AuthenticationResponseDto authResponse = AuthenticationResponseDto.builder()
                         .accessToken(accessToken)
                         .refreshToken(refreshToken)
                         .build();

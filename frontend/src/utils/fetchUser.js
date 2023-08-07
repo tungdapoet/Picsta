@@ -3,3 +3,7 @@ export const fetchUser = () => {
       ? JSON.parse(localStorage.getItem("user"))
       : localStorage.clear();
 }
+
+export const fetchUserId = () => {
+    return localStorage.getItem("client_id")
+}

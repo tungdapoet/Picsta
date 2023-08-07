@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-// import { client } from "../client";
 import { categories } from "../utils/data";
 import Spinner from "./Spinner";
 
@@ -29,18 +28,7 @@ export default function CreatePin({ user }) {
     ) {
       setWrongImageType(false);
       setLoading(true);
-      // client.assets
-      //   .upload("image", selectedFile, {
-      //     contentType: selectedFile.type,
-      //     filename: selectedFile.name,
-      //   })
-      //   .then((document) => {
-      //     setImageAsset(document);
-      //     setLoading(false);
-      //   })
-      //   .catch((error) => {
-      //     console.log("Upload failed:", error.message);
-      //   });
+
     } else {
       setLoading(false);
       setWrongImageType(true);
@@ -68,9 +56,7 @@ export default function CreatePin({ user }) {
         },
         category,
       };
-      // client.create(doc).then(() => {
-      //   navigate("/");
-      // });
+
     } else {
       setFields(true);
 

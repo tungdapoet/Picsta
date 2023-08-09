@@ -3,6 +3,7 @@ package com.piczio.userservice.user.controller;
 import com.piczio.userservice.user.dto.UserRequestDto;
 import com.piczio.userservice.user.dto.UserResponseDto;
 import com.piczio.userservice.user.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class UserController {
 
     @GetMapping("detail")
     @PreAuthorize("hasAuthority('admin:read')")
-    public UserResponseDto getUser(@RequestBody UserRequestDto request) {
+    public UserResponseDto getUser(@RequestBody @Valid UserRequestDto request) {
         return userService.getUser(request);
     }
 

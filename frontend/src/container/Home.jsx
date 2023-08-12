@@ -15,8 +15,11 @@ export default function Home() {
 
   const userInfo = fetchUser();
   useEffect(() => {
-    const query = userQuery(userInfo?.googleId);
-  }, [userInfo?.googleId]);
+    const query = userQuery(userInfo);
+    if(query) {
+      setUser(query)
+    }
+  }, [userInfo]);
 
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0);

@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { feedQuery, searchQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
+import {mockImage} from "../utils/mock";
 
 export default function Feed() {
-  const [pins, setPins] = useState();
+  const [pins, setPins] = useState(mockImage);
   const [loading, setLoading] = useState(false);
   const { categoryId } = useParams();
 
@@ -16,6 +17,7 @@ export default function Feed() {
     } else {
       setLoading(true);
 
+      setLoading(false);
     }
   }, [categoryId]);
   const ideaName = categoryId || "new";

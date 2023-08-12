@@ -4,9 +4,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { googleLogout } from '@react-oauth/google';
 
 import { userCreatedPinsQuery, userQuery, userSavedPinsQuery } from '../utils/data';
-// import { client } from '../client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
+import {fetchUser} from "../utils/fetchUser";
+import {mockUserDetail} from "../utils/mock";
 
 const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none';
 const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
@@ -19,13 +20,11 @@ export default function UserProfile() {
   const navigate = useNavigate();
   const { userId } = useParams();
 
-  const User = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+  const User = fetchUser()
 
   useEffect(() => {
     const query = userQuery(userId);
-    // client.fetch(query).then((data) => {
-    //   setUser(data[0]);
-    // });
+    setUser(mockUserDetail)
   }, [userId]);
 
   useEffect(() => {
@@ -71,7 +70,7 @@ export default function UserProfile() {
               {user.userName}
             </h1>
             <div className="absolute top-0 z-1 right-0 p-2">
-              {userId === User.googleId && (
+              {userId === user._id && (
                 <googleLogout
                   clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
                   render={(renderProps) => (

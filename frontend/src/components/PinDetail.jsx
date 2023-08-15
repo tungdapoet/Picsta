@@ -5,11 +5,11 @@ import { v4 as uuidv4 } from "uuid";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
-import {mockImageDetail} from "../utils/mock";
+import {mockImageDetail, mockPins} from "../utils/mock";
 
 export default function PinDetail({ user }) {
   const { pinId } = useParams();
-  const [pins, setPins] = useState();
+  const [pins, setPins] = useState([]);
   const [pinDetail, setPinDetail] = useState(false);
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
@@ -30,6 +30,8 @@ export default function PinDetail({ user }) {
     //   //   }
     //   // });
     // }
+
+    setPins(mockPins);
   };
 
   useEffect(() => {
@@ -112,13 +114,13 @@ export default function PinDetail({ user }) {
               ))}
             </div>
             <div className="flex flex-wrap mt-6 gap-3">
-              {/*<Link to={`/user-profile/${user._id}`}>*/}
-              {/*  <img*/}
-              {/*    src={user.image}*/}
-              {/*    className="w-10 h-10 rounded-full cursor-pointer"*/}
-              {/*    alt="user-profile"*/}
-              {/*  />*/}
-              {/*</Link>*/}
+              <Link to={`/user-profile/${user._id}`}>
+                <img
+                  src={user.image}
+                  className="w-10 h-10 rounded-full cursor-pointer"
+                  alt="user-profile"
+                />
+              </Link>
               <input
                 className=" flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300"
                 type="text"

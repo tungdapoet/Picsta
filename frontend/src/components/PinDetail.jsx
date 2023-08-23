@@ -2,33 +2,36 @@ import React, { useEffect, useState } from "react";
 import { MdDownloadForOffline } from "react-icons/md";
 import { Link, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-// import { client, urlFor } from "../client";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
+import {mockImageDetail, mockPins} from "../utils/mock";
 
 export default function PinDetail({ user }) {
   const { pinId } = useParams();
-  const [pins, setPins] = useState();
-  const [pinDetail, setPinDetail] = useState();
+  const [pins, setPins] = useState([]);
+  const [pinDetail, setPinDetail] = useState(false);
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
 
   const fetchPinDetails = () => {
-    const query = pinDetailQuery(pinId);
+    setPinDetail(mockImageDetail)
+    // const query = pinDetailQuery(pinId);
+    //
+    // if (query) {
+    //   // client.fetch(`${query}`).then((data) => {
+    //   //   setPinDetail(data[0]);
+    //   //   console.log(data);
+    //   //   if (data[0]) {
+    //   //     const query1 = pinDetailMorePinQuery(data[0]);
+    //   //     client.fetch(query1).then((res) => {
+    //   //       setPins(res);
+    //   //     });
+    //   //   }
+    //   // });
+    // }
 
-    if (query) {
-      // client.fetch(`${query}`).then((data) => {
-      //   setPinDetail(data[0]);
-      //   console.log(data);
-      //   if (data[0]) {
-      //     const query1 = pinDetailMorePinQuery(data[0]);
-      //     client.fetch(query1).then((res) => {
-      //       setPins(res);
-      //     });
-      //   }
-      // });
-    }
+    setPins(mockPins);
   };
 
   useEffect(() => {
@@ -55,7 +58,7 @@ export default function PinDetail({ user }) {
           <div className="flex justify-center items-center md:items-start flex-initial">
             <img
               className="rounded-t-3xl rounded-b-lg"
-              src={pinDetail?.image}
+              src={pinDetail?.image?.asset?.url}
               alt="user-post"
             />
           </div>

@@ -1,7 +1,12 @@
+server:
+    port: 30080
+
 spring:
+    application:
+        name: USER-SERVICE
     datasource:
         password: 123456
-        url: jdbc:mysql://4.196.159.180:3306/piczio
+        url: jdbc:mysql://4.196.159.180:8036/piczio
         username: root
     jpa:
         hibernate:
@@ -12,6 +17,12 @@ spring:
                 format_sql: true
         database: mysql
         database-platform: org.hibernate.dialect.MySQLDialect
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:30761/eureka/
+
 
 application:
     security:
@@ -33,4 +44,3 @@ springdoc:
         path: /api-docs
     swagger-ui:
         path: /swagger-ui
-

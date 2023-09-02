@@ -2,6 +2,13 @@ server:
     port: 30080
 
 spring:
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-id: 1063640680585-4m7673brd1p2fsjfuep7vatg7cb1etdo.apps.googleusercontent.com
+                        client-secret: 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
     application:
         name: USER-SERVICE
     datasource:

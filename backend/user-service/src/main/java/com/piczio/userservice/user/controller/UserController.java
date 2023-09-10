@@ -9,10 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class UserController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    @GetMapping("detail")
+    @PostMapping("detail")
     @PreAuthorize("hasAuthority('admin:read')")
     public UserResponseDto getUser(@RequestBody @Valid UserRequestDto request) {
         return userService.getUser(request);

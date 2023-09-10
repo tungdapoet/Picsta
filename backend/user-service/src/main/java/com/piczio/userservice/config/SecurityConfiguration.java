@@ -45,11 +45,8 @@ public class SecurityConfiguration {
             .requestMatchers(HttpMethod.DELETE, "/api/v1/management/**").hasAuthority(ADMIN_DELETE.name())
             .anyRequest().authenticated()
         )
-        .oauth2Login(oauth2 -> oauth2
-            .defaultSuccessUrl("/api/v1/auth/oauth2/user")
-            .failureUrl("/oauth2LoginFailure"))
         .sessionManagement(session -> session
-            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //??? check var
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         )
         .authenticationProvider(authenticationProvider)
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

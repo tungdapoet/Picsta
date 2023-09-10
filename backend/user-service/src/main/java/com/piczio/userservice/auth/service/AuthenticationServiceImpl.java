@@ -10,9 +10,6 @@ import com.piczio.userservice.exception.EmailAlreadyExistsException;
 import com.piczio.userservice.exception.ResourceNotFoundException;
 import com.piczio.userservice.user.entity.User;
 import com.piczio.userservice.user.repository.UserRepository;
-import com.piczio.userservice.token.entity.Token;
-import com.piczio.userservice.token.repository.TokenRepository;
-import com.piczio.userservice.token.types.TokenType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -25,7 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
+
 
 @Service
 @AllArgsConstructor
@@ -33,7 +30,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final UserRepository userRepository;
 
-    private final TokenRepository tokenRepository;
+    private final TokenService tokenService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -63,7 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             String jwtToken = jwtService.generateToken(user);
             String refreshToken = jwtService.generateRefreshToken(user);
 
-            saveUserToken(savedUser, jwtToken);
+            tokenService.saveUserToken(savedUser, jwtToken);
 
             return AuthenticationResponseDto.builder()
                     .accessToken(jwtToken)
@@ -90,8 +87,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             String jwtToken = jwtService.generateToken(user);
             String refreshToken = jwtService.generateRefreshToken(user);
 
-            revokeAllUserTokens(user);
-            saveUserToken(user, jwtToken);
+            tokenService.revokeAllUserTokens(user);
+            tokenService.saveUserToken(user, jwtToken);
 
             return AuthenticationResponseDto.builder()
                     .accessToken(jwtToken)
@@ -100,33 +97,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         } catch (BadCredentialsException e) {
             throw new AuthenticationFailedException("Authentication failed!");
         }
-    }
-
-    @Override
-    public void saveUserToken(User user, String jwtToken) {
-        Token token = Token.builder()
-                .user(user)
-                .token(jwtToken)
-                .tokenType(TokenType.BEARER)
-                .expired(false)
-                .revoked(false)
-                .build();
-
-        tokenRepository.save(token);
-    }
-
-    @Override
-    public void revokeAllUserTokens(User user) {
-        List<Token> validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
-
-        if (validUserTokens.isEmpty()) return;
-
-        validUserTokens.forEach(token -> {
-            token.setExpired(true);
-            token.setRevoked(true);
-        });
-
-        tokenRepository.saveAll(validUserTokens);
     }
 
     @Override
@@ -149,8 +119,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             if (jwtService.isTokenValid(refreshToken, user)) {
                 String accessToken = jwtService.generateToken(user);
 
-                revokeAllUserTokens(user);
-                saveUserToken(user, accessToken);
+                tokenService.revokeAllUserTokens(user);
+                tokenService.saveUserToken(user, accessToken);
 
                 AuthenticationResponseDto authResponse = AuthenticationResponseDto.builder()
                         .accessToken(accessToken)

@@ -11,14 +11,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Map;
 
 @Tag(
         name = "Authentication endpoints",
@@ -68,13 +64,5 @@ public class AuthenticationController {
             HttpServletResponse response
     ) throws IOException {
         authenticationService.refreshToken(request, response);
-    }
-
-    @GetMapping("/oauth2/user")
-    public ResponseEntity<?> getOauth2User(@AuthenticationPrincipal OAuth2User user) {
-        if (user != null) {
-            return ResponseEntity.ok(user.getAttributes());
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User is not authenticated with OAuth2");
     }
 }

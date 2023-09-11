@@ -4,7 +4,7 @@ import com.piczio.userservice.user.dto.UserRequestDto;
 import com.piczio.userservice.user.dto.UserResponseDto;
 import com.piczio.userservice.user.mapper.UserMapper;
 import com.piczio.userservice.user.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

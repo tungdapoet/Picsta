@@ -1,7 +1,7 @@
 package com.piczio.userservice.user.entity;
 
 import com.piczio.userservice.token.entity.Token;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

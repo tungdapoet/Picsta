@@ -3,8 +3,8 @@ package com.piczio.userservice.auth.service;
 import com.piczio.userservice.auth.dto.AuthenticationRequestDto;
 import com.piczio.userservice.auth.dto.AuthenticationResponseDto;
 import com.piczio.userservice.auth.dto.RegisterRequestDto;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 

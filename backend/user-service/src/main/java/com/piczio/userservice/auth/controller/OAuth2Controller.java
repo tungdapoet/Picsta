@@ -37,7 +37,6 @@ public class OAuth2Controller {
         if (authentication == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No valid OAuth2 authentication found.");
         }
-
         OAuth2AuthorizedClient authorizedClient = authorizedClientService.loadAuthorizedClient(
                 authentication.getAuthorizedClientRegistrationId(),
                 authentication.getName());

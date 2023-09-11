@@ -2,6 +2,21 @@ server:
     port: 30080
 
 spring:
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-id: 584972720399-kdafld4ui47fvhbb5u3bq0mn2h8g09md.apps.googleusercontent.com
+                        client-secret: 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
+                        redirect-uri: "http://localhost:30080/api/v1/oauth2/code/google"
+                        scope:
+                            - openid
+                            - profile
+                            - email
+                provider:
+                    google:
+                        user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
     application:
         name: USER-SERVICE
     datasource:

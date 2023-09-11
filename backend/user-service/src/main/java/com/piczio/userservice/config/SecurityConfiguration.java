@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                 "/swagger-ui/**",
                 "/api-docs/**",
                 "/actuator/**",
-                "/api/v1/auth/**"
+                "/api/v1/auth/**", "/api/v1/oauth2/**"
             ).permitAll()
             .requestMatchers("/api/v1/management/**").hasRole(ADMIN.name())
             .requestMatchers(HttpMethod.GET, "/api/v1/management/**").hasAuthority(ADMIN_READ.name())
@@ -44,7 +44,9 @@ public class SecurityConfiguration {
             .requestMatchers(HttpMethod.PUT, "/api/v1/management/**").hasAuthority(ADMIN_UPDATE.name())
             .requestMatchers(HttpMethod.DELETE, "/api/v1/management/**").hasAuthority(ADMIN_DELETE.name())
             .anyRequest().authenticated()
-        )
+        ).oauth2Login(oauth2 -> oauth2
+                    .defaultSuccessUrl("/api/v1/oauth2/success", true)
+                    .failureUrl("/api/v1/oauth2/failed"))
         .sessionManagement(session -> session
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         )

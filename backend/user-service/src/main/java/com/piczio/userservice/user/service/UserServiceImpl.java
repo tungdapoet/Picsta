@@ -19,6 +19,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    public Long getUserId(UserRequestDto userRequestDto) {
+        var user = userRepository.findByEmail(userRequestDto.getEmail())
+                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + userRequestDto.getEmail()));
+
+        return user.getId();
+    }
+
+    @Override
     public UserResponseDto getUser(UserRequestDto userRequestDto) {
         var user = userRepository.findByEmail(userRequestDto.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + userRequestDto.getEmail()));

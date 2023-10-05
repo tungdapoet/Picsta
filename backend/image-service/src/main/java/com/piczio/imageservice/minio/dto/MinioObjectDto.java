@@ -1,4 +1,4 @@
-package com.piczio.imageservice.dto;
+package com.piczio.imageservice.minio.dto;
 
 import lombok.Builder;
 import lombok.Data;

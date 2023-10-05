@@ -16,7 +16,17 @@ spring:
             hibernate:
                 format_sql: true
         database: mysql
-        database-platform: org.hibernate.dialect.MySQLDialect
+        database-platform: org.hibernate.dialect.MySQL5Dialect
+    kafka:
+        producer:
+            bootstrap-servers: http://4.196.159.180:29092
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        consumer:
+            bootstrap-servers: http://4.196.159.180:29092
+            group-id: user-service-group
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 #    config:
 #        import:
 #            optional:

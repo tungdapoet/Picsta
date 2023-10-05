@@ -1,0 +1,17 @@
+package com.piczio.userservice.kafka.event;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@AllArgsConstructor
+public class ImageUploadEvent {
+    private Long userId;
+    private String imageUrl;
+    private LocalDateTime uploadDate;
+    private String description;
+}

@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import static com.piczio.userservice.user.entity.Permission.*;
 import static com.piczio.userservice.user.entity.Role.ADMIN;
+import static com.piczio.userservice.user.entity.Role.USER;
 
 @Configuration
 @AllArgsConstructor
@@ -37,9 +38,9 @@ public class SecurityConfiguration {
                         "/swagger-ui/**",
                         "/api-docs/**",
                         "/actuator/**",
-                        "/api/v1/auth/**",
-                        "/api/v1/oauth2/**"
+                        "/api/v1/auth/**"
                 ).permitAll()
+                .antMatchers("/api/v1/user/**").hasRole(USER.name())
                 .antMatchers("/api/v1/management/**").hasRole(ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/api/v1/management/**").hasAuthority(ADMIN_READ.name())
                 .antMatchers(HttpMethod.POST, "/api/v1/management/**").hasAuthority(ADMIN_CREATE.name())

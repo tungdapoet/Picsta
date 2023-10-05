@@ -1,4 +1,4 @@
-package com.piczio.imageservice.config;
+package com.piczio.imageservice.minio.config;
 
 import io.minio.MinioClient;
 import lombok.Data;

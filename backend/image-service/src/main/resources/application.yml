@@ -23,6 +23,16 @@ spring:
         format_sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
+  kafka:
+    producer:
+      bootstrap-servers: http://4.196.159.180:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: http://4.196.159.180:29092
+      group-id: image-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 ##    config:
 ##        import:
 ##            optional:
@@ -30,7 +40,7 @@ spring:
 #
 
 minio:
-  url: http://http://4.196.159.180:32768/
+  url: http://4.196.159.180:32768/
   access-key: k9lMPwsWdLpWiRxGwG7O
   secret-key: iWLYjk1iVJUY3UTRj5jqSnDJJmaIxtEon9BbHxia
   bucket-name: picizoimages

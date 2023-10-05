@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("api/v1/management")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('ADMIN')")
-public class UserController {
+public class ManagementController {
     private final UserService userService;
 
     @Operation(

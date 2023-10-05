@@ -1,7 +1,7 @@
-package com.piczio.imageservice.service;
+package com.piczio.imageservice.minio.service;
 
 
-import com.piczio.imageservice.dto.MinioObjectDto;
+import com.piczio.imageservice.minio.dto.MinioObjectDto;
 import io.minio.*;
 import io.minio.http.Method;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +19,7 @@ public class MinioServiceImpl implements MinioService {
 
     private final MinioClient minioClient;
 
-    @Value("${minio.bucket}")
+    @Value("${minio.bucket-name}")
     private String bucketName;
 
     public MinioServiceImpl(MinioClient minioClient) {
@@ -35,6 +35,20 @@ public class MinioServiceImpl implements MinioService {
                         .build()
         );
         return statObjectResponse.lastModified();
+    }
+
+    @Override
+    public void deleteObject(String objectName) {
+        try {
+            minioClient.removeObject(
+                    RemoveObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .build()
+            );
+        } catch (Exception e) {
+            throw new RuntimeException("Error while deleting object: " + objectName + ". Error: " + e.getMessage(), e);
+        }
     }
 
     @Override

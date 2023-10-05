@@ -1,6 +1,6 @@
-package com.piczio.imageservice.service;
+package com.piczio.imageservice.minio.service;
 
-import com.piczio.imageservice.dto.MinioObjectDto;
+import com.piczio.imageservice.minio.dto.MinioObjectDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
@@ -12,4 +12,6 @@ public interface MinioService {
     InputStream downloadObject(String objectKey);
 
     ZonedDateTime getUploadDate(String bucketName, String objectName) throws Exception;
+
+    void deleteObject(String objectName);
 }

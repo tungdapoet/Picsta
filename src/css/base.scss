@@ -1,0 +1,112 @@
+
+.forgotpassword {
+    width: 100%;
+    height: 1042px;
+    position: relative;
+    left: 100px;
+}
+.bigimg {
+    width: 781.5px;
+    height: 1042px;
+    left: 819px;
+    border-radius: 45px, 0px, 0px, 45px;
+    position: absolute;
+    top: 0px;
+    left: 819px;
+}
+
+.picsta {
+    width: 149.17px;
+    height: 48px;
+    top: 26px;
+    left: 22px;
+    position: absolute;
+}
+.forgot {
+    width: 565px;
+    height: 40px;
+    top: 295px;
+    left: 203px;
+    position: absolute;
+    font-family: 'Akshar' , sans-serif ;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0.08em;
+    text-align: left;
+}
+.OTP {
+    width: 568px;
+    height: 60px;
+    top: 529px;
+    left: 135px;
+    border-radius: 8px;
+    position: absolute;
+}
+.SEND {
+    width: 200.28px;
+    height: 40px;
+    top: 10px;
+    left: 206px;
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 40px;
+    letter-spacing: 0.08em;
+    text-align: left;
+}
+
+.email_input {
+    width: 566.97px;
+    top: 428px;
+    left: 275.03px;
+    border: 2px;
+    position: absolute;
+    transform: scale(1.5); /* Tăng kích cỡ 1.5 lần */
+}
+.Facebook {
+    width: 210px;
+    height: 38px;
+    top: 740px;
+    left: 450px;
+    position: absolute;
+}
+.Facebook_img {
+    top:0px;
+    position: absolute;
+    left:0px;
+    width: 210px;
+    height: 38px;
+}
+.Google {
+    width: 210px;
+    height: 38px;
+    top: 780px;
+    left: 197px;
+    background-color: aliceblue;
+}
+
+.Google_img {
+    top:0px;
+    position: absolute;
+    left:0px;
+    width: 210px;
+    height: 38px;
+}
+.remember {
+    width: 754.14px;
+    height: 40px;
+    top: 680px;
+    left: 161.64px;
+    font-family: 'Inter',sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0.08em;
+    text-align: left;
+    position: absolute;
+}
+.remember a {
+    color: blue;
+}

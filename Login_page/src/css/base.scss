@@ -1,0 +1,166 @@
+/*Container chính*/
+.dang_nhap {
+    width: 1600px;
+    height: 900px;
+    background-color: #FFFFFF;
+    position: relative;
+    left: 150px;
+}
+
+
+/*Phần có chữ Or*/
+.Line_Field {
+    width: 308px;
+    height: 21px;
+    top: 476px;
+    left: 1166px;
+    border: 1px;
+    border: 1px solid rgba(0, 0, 0, 0.5)
+}
+.Or {
+    position: absolute;
+    top: 476px;
+    left: 43px;
+}
+
+/*phần ảnh hải đăng và photo alex*/
+.anh_dep {
+    position: absolute;
+    width: 1123px;
+    height: 907px;
+    right: 477px;
+    bottom: -7px;
+}
+
+.Photo_Alex {
+    position: absolute;
+    top: 836px;
+    left: 48px;
+}
+.Log_in {
+    position: absolute;
+    left: 1123px;
+    bottom: -6px;
+    width: 477px;
+    height: 906px;
+    background-color: white;
+}
+
+
+
+/*code cho phần đăng nhập*/
+.Frame_login {
+    position: absolute;
+    top: 48px;
+    left: 48px;
+    width: 381px;
+    height: 444.5px;
+    gap: 48px;
+    
+}
+.Username {
+    position: absolute;
+    top: 160px;
+    left: 0px;
+}
+
+.Password {
+    position: absolute;
+    top: 242px;
+    left: 0px;
+}
+.Nice_to_see {
+    position: absolute;
+    top:96px;
+    left: 0px;
+}
+.Signin {
+    width: 381px;
+    height: 40px;
+    padding: 10px, 24px, 10px, 24px;
+    border-radius: 6px;
+    left: 48px;
+    top: 420px;
+    position: absolute;
+}
+
+
+
+.Switcher {
+    position: absolute;
+    top: 368px;
+    left: 48px;
+}
+.forgotpass {
+    position: absolute;
+    top: 374px;
+    left: 300px;
+    color: rgba(0, 122, 255, 1);
+}
+/* login with Facebook */
+.Facebook {
+    width: 304px;
+    height: 35px;
+    position: absolute;
+}
+.Facebook_login {
+    width: 304px;
+    height: 35px;
+    top: 533px;
+    left: 1168px;
+    position: absolute;
+}
+/* login with Google */
+.Google {
+    width: 304px;
+    height: 35px;
+    position: absolute;
+}
+
+.Google_login {
+    width: 304px;
+    height: 37.42px;
+    top: 590px;
+    left: 1168px;
+    border: 1px;
+    position: absolute;
+}
+.sign_now {
+    color: blue;
+    width: 100px;
+    height: 20px;
+    top:680.5px;
+    left: 218px;
+    position: absolute;
+    font-family: 'Karla',sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.30000001192092896px;
+    text-align: right;
+    color: rgba(0, 122, 255, 1);
+
+}
+.nothaveacc {
+    width: 228px;
+    height: 20px;
+    gap: 8px;
+    top:677.5px;
+    left:48px;
+    position: absolute;
+}
+/* 2 thanh nhập email và pass */
+.Email_input {
+    width: 381px;
+    height: 48px;
+    top:220px;
+    left:48px;
+    position: absolute;
+}
+.Input_pass {
+    width: 381px;
+    height: 48px;
+    top: 300px;
+    left: 48px;
+    position: absolute;
+}

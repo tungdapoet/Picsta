@@ -85,12 +85,14 @@ export default function LoginForm() {
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
         <RHFCheckbox name="remember" label="Remember me" />
-        <Link component={RouterLink} variant="subtitle2" to={PATH_AUTH.resetPassword}>
+        <Link component={RouterLink} variant="subtitle2" to={PATH_AUTH.resetPassword} sx={{ color: 'info.main' }}>
           Forgot password?
         </Link>
       </Stack>
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}
+        sx={{ bgcolor: 'info.main' }}
+      >
         Login
       </LoadingButton>
     </FormProvider>

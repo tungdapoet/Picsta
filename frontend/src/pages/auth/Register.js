@@ -2,7 +2,7 @@ import { capitalCase } from 'change-case';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Link, Container, Typography, Tooltip } from '@mui/material';
+import { Box, Card, Link, Container, Typography, Tooltip, Stack , Button } from '@mui/material';
 // hooks
 import useAuth from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
@@ -14,133 +14,134 @@ import Logo from '../../components/Logo';
 import Image from '../../components/Image';
 // sections
 import { RegisterForm } from '../../sections/auth/register';
-
+//image
+import anh7 from '../../img/Login With Facebook.png';
+import anh8 from '../../img/Login With Google.png';
+import anhlacay from '../../img/anh1.png'
+import anhlogo from '../../img/anh2.png'
+import Getstarted from '../../img/Get Started Now.png'
+import Sologan from '../../img/Enter your Credentials to access your account.png'
+import { blue } from '@mui/material/colors';
 // ----------------------------------------------------------------------
+const Dangky = styled('div')(({ theme }) => ({
+  position: 'relative',
+  width: 1600,
+  height: 1042,
+}))
+const Picsta = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    top: 26,
+    left: 22,
+}))
 
-const RootStyle = styled('div')(({ theme }) => ({
-  [theme.breakpoints.up('md')]: {
-    display: 'flex',
-  },
-}));
+const Leafphoto = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    width: 781.5,
+    height: 1042,
+    top: 0,
+    left: 819,
+}))
 
-const HeaderStyle = styled('header')(({ theme }) => ({
-  top: 0,
-  zIndex: 9,
-  lineHeight: 0,
-  width: '100%',
-  display: 'flex',
-  alignItems: 'center',
+const Register_form = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    width: 404,
+    height: 35.02,
+    top: 293.49,
+    left: 212,
+}))
+
+const Getstarted_ = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    width: 277,
+    height: 48,
+    top: 195,
+    left: 212,
+}))
+
+const Sologan_ = styled('div')(({ theme }) => ({
   position: 'absolute',
-  padding: theme.spacing(3),
-  justifyContent: 'space-between',
-  [theme.breakpoints.up('md')]: {
-    alignItems: 'flex-start',
-    padding: theme.spacing(7, 5, 0, 7),
-  },
-}));
+  width: 372,
+  height: 26.26,
+  top: 247.53,
+  left: 212,
+}))
 
-const SectionStyle = styled(Card)(({ theme }) => ({
-  width: '100%',
-  maxWidth: 464,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  margin: theme.spacing(2, 0, 2, 2),
-}));
-
-const ContentStyle = styled('div')(({ theme }) => ({
-  maxWidth: 480,
-  margin: 'auto',
-  display: 'flex',
-  minHeight: '100vh',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  padding: theme.spacing(12, 0),
-}));
+const Haveacc = styled('div')(({ theme }) => ({
+  width: 183,
+  height: 21,
+  fontSize: 20,
+  position: 'absolute',
+  top: 810.02,
+  left: 210,
+  }))
+const Signin = styled('div')(({ theme }) => ({
+  width: 183,
+  height: 21,
+  top: 810.02,
+  left: 380,
+  position: 'absolute',
+  fontSize: 20,
+  }))
+const Facebook= styled('div')(({ theme }) => ({
+    position: 'absolute',
+    width: 221,
+    height: 45,
+    top: 700,
+    left: 197,
+    borderRadius: 10,
+    backgroundColor: blue,
+ }))
+const Google = styled('div')(({ theme }) => ({
+      width: 221,
+      height: 45,
+      top: 740,
+      left: 197,
+      borderRadius: 10,
+      position: 'absolute',
+      
+      }))
 
 // ----------------------------------------------------------------------
 
 export default function Register() {
-  const { method } = useAuth();
-
-  const smUp = useResponsive('up', 'sm');
-
-  const mdUp = useResponsive('up', 'md');
-
+  
   return (
     <Page title="Register">
-      <RootStyle>
-        <HeaderStyle>
-          <Logo />
-          {smUp && (
-            <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-              Already have an account?{' '}
-              <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.login}>
-                Login
-              </Link>
-            </Typography>
-          )}
-        </HeaderStyle>
-
-        {mdUp && (
-          <SectionStyle>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Manage the job more effectively with Minimal
-            </Typography>
-            <Image
-              visibleByDefault
-              disabledEffect
-              alt="register"
-              src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_register.png"
-            />
-          </SectionStyle>
-        )}
-
-        <Container>
-          <ContentStyle>
-            <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
-              <Box sx={{ flexGrow: 1 }}>
-                <Typography variant="h4" gutterBottom>
-                  Get started absolutely free.
-                </Typography>
-                <Typography sx={{ color: 'text.secondary' }}>Free forever. No credit card needed.</Typography>
-              </Box>
-              <Tooltip title={capitalCase(method)}>
-                <>
-                  <Image
-                    disabledEffect
-                    src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
-                    sx={{ width: 32, height: 32 }}
-                  />
-                </>
-              </Tooltip>
-            </Box>
-
+        <Leafphoto
+          sx={{
+            borderTopRightRadius: '45px',
+            borderBottomRightRadius: '45px',
+          }}
+        ><img src = {anhlacay} /></Leafphoto>
+        <Picsta><img src = {anhlogo} /></Picsta>
+        <Getstarted_><img src = {Getstarted} /> </Getstarted_> 
+        <Sologan_><img src = {Sologan} /></Sologan_>
+        <Register_form>
             <RegisterForm />
-
-            <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-              By registering, I agree to Minimal&nbsp;
-              <Link underline="always" color="text.primary" href="#">
-                Terms of Service
-              </Link>
-              and
-              <Link underline="always" color="text.primary" href="#">
-                Privacy Policy
-              </Link>
-              .
-            </Typography>
-
-            {!smUp && (
-              <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
-                Already have an account?{' '}
-                <Link variant="subtitle2" to={PATH_AUTH.login} component={RouterLink}>
-                  Login
-                </Link>
-              </Typography>
-            )}
-          </ContentStyle>
-        </Container>
-      </RootStyle>
+        </Register_form>
+        <Facebook>
+          <Stack spacing={2} direction="row">
+              <Button variant="text">
+                  
+                  <img  src = {anh7}/>
+                  
+              </Button>
+          </Stack>
+        </Facebook>
+        <Google>
+            <Stack spacing={2} direction="row">
+              <Button variant="text">
+                  
+                  <img src = {anh8}/>
+                  
+              </Button>
+          </Stack>
+        </Google>
+        <Haveacc>
+                 Have an account?
+        </Haveacc>
+        <Signin><a href= "https://www.google.com/"> Sign In </a></Signin>
+           
     </Page>
   );
 }

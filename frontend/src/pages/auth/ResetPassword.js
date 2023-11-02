@@ -13,7 +13,9 @@ import Page from '../../components/Page';
 import { ResetPasswordForm } from '../../sections/auth/reset-password';
 // assets
 import { SentIcon } from '../../assets';
-
+import anh1 from '../../img/anh1.png';
+import anh2 from '../../img/anh2.png';
+import anh3 from '../../img/anh3.png';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -23,6 +25,47 @@ const RootStyle = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   padding: theme.spacing(12, 0),
 }));
+const BigImg = styled('div')(({ theme }) => ({
+    width: 781.5,
+    height: 1042,
+    left: 819,
+    
+    position: 'absolute',
+    top: 0,
+    left: 819,
+}));
+const Picsta = styled('div')(({ theme }) => ({
+  width: 149.17,
+  height: 48,
+  top: 26,
+  left: 22,
+  position: 'absolute',
+}));
+const Forgot = styled('div')(({ theme }) => ({
+      width: 565,
+      height: 40,
+      top: 295,
+      left: 203,
+      position: 'absolute',
+      
+}));
+
+const Remember = styled('div')(({ theme }) => ({
+    width: 754.14,
+    height: 40,
+    top: 680,
+    left: 190,
+    position: 'absolute',
+}));
+
+const Reset = styled('div')(({ theme }) => ({
+  width: 410,
+  height: 68,
+  top: 438,
+  left: 183,
+  position: 'absolute',
+}))
+
 
 // ----------------------------------------------------------------------
 
@@ -32,49 +75,16 @@ export default function ResetPassword() {
 
   return (
     <Page title="Reset Password" sx={{ height: 1 }}>
-      <RootStyle>
-        <LogoOnlyLayout />
+              <Reset>
+                <ResetPasswordForm />
+              </Reset>
+              <BigImg><img src= {anh1}/></BigImg>
+              <Picsta><img src= {anh2}/></Picsta>
+              <Forgot><img src= {anh3}/></Forgot>
 
-        <Container>
-          <Box sx={{ maxWidth: 480, mx: 'auto' }}>
-            {!sent ? (
-              <>
-                <Typography variant="h3" paragraph>
-                  Forgot your password?
-                </Typography>
-                <Typography sx={{ color: 'text.secondary', mb: 5 }}>
-                  Please enter the email address associated with your account and We will email you a link to reset your
-                  password.
-                </Typography>
-
-                <ResetPasswordForm onSent={() => setSent(true)} onGetEmail={(value) => setEmail(value)} />
-
-                <Button fullWidth size="large" component={RouterLink} to={PATH_AUTH.login} sx={{ mt: 1 }}>
-                  Back
-                </Button>
-              </>
-            ) : (
-              <Box sx={{ textAlign: 'center' }}>
-                <SentIcon sx={{ mb: 5, mx: 'auto', height: 160 }} />
-
-                <Typography variant="h3" gutterBottom>
-                  Request sent successfully
-                </Typography>
-                <Typography>
-                  We have sent a confirmation email to &nbsp;
-                  <strong>{email}</strong>
-                  <br />
-                  Please check your email.
-                </Typography>
-
-                <Button size="large" variant="contained" component={RouterLink} to={PATH_AUTH.login} sx={{ mt: 5 }}>
-                  Back
-                </Button>
-              </Box>
-            )}
-          </Box>
-        </Container>
-      </RootStyle>
+              <Remember>
+                 <div>Did you remember your password?<a href="/Login.js" > Login </a></div>
+              </Remember>
     </Page>
   );
 }

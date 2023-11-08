@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography , Stack } from '@mui/material';
 // layouts
 import LogoOnlyLayout from '../../layouts/LogoOnlyLayout';
 // routes
@@ -13,59 +13,21 @@ import Page from '../../components/Page';
 import { ResetPasswordForm } from '../../sections/auth/reset-password';
 // assets
 import { SentIcon } from '../../assets';
-import anh1 from '../../img/anh1.png';
-import anh2 from '../../img/anh2.png';
-import anh3 from '../../img/anh3.png';
+import anhcay from '../../img/anh1.png';
+import anhlogo_ from '../../img/anh2.png';
+import anhquenmk from '../../img/anh3.png';
+import anh9 from '../../img/Facebook.png';
+import anh10 from '../../img/Google.png';
+import Image from 'src/components/Image';
 // ----------------------------------------------------------------------
 
+
+
 const RootStyle = styled('div')(({ theme }) => ({
-  display: 'flex',
-  minHeight: '100%',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: theme.spacing(12, 0),
+  [theme.breakpoints.up('md')]: {
+    display: 'flex',
+  },
 }));
-const BigImg = styled('div')(({ theme }) => ({
-    width: 781.5,
-    height: 1042,
-    left: 819,
-    
-    position: 'absolute',
-    top: 0,
-    left: 819,
-}));
-const Picsta = styled('div')(({ theme }) => ({
-  width: 149.17,
-  height: 48,
-  top: 26,
-  left: 22,
-  position: 'absolute',
-}));
-const Forgot = styled('div')(({ theme }) => ({
-      width: 565,
-      height: 40,
-      top: 295,
-      left: 203,
-      position: 'absolute',
-      
-}));
-
-const Remember = styled('div')(({ theme }) => ({
-    width: 754.14,
-    height: 40,
-    top: 680,
-    left: 190,
-    position: 'absolute',
-}));
-
-const Reset = styled('div')(({ theme }) => ({
-  width: 410,
-  height: 68,
-  top: 438,
-  left: 183,
-  position: 'absolute',
-}))
-
 
 // ----------------------------------------------------------------------
 
@@ -75,16 +37,35 @@ export default function ResetPassword() {
 
   return (
     <Page title="Reset Password" sx={{ height: 1 }}>
-              <Reset>
+        <RootStyle>
+          <Box sx={{width: 781.5,height: 1042, left: 819,position: 'absolute',top: 0, left: 819}}>  
+                <Image
+                      visibleByDefault
+                      disabledEffect
+                      src={anhcay}
+                    />
+          </Box>
+          <Box sx={{ width: 149.17, height: 48,top: 26, left: 22,position: 'absolute'}}>
+                <Image
+                      visibleByDefault
+                      disabledEffect
+                      src={anhlogo_}
+                    />
+          </Box>
+          <Box sx={{width: 405,height: 20,top: 295,left: 190,position: 'absolute'}}>  
+                <Image
+                      visibleByDefault
+                      disabledEffect
+                      src={anhquenmk}
+                    />
+          </Box>
+          <Box sx={{width: 410,height: 68,top: 438,left: 183, position: 'absolute'}}>
                 <ResetPasswordForm />
-              </Reset>
-              <BigImg><img src= {anh1}/></BigImg>
-              <Picsta><img src= {anh2}/></Picsta>
-              <Forgot><img src= {anh3}/></Forgot>
-
-              <Remember>
-                 <div>Did you remember your password?<a href="/Login.js" > Login </a></div>
-              </Remember>
+          </Box>
+          <Typography sx={{ width: 754.14, height: 40,top: 700,left: 190, position: 'absolute'}}>
+                Did you remember your password?<a href="/Login.js" > Login </a>
+          </Typography>
+        </RootStyle> 
     </Page>
   );
 }

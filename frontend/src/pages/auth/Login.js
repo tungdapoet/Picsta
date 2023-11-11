@@ -31,10 +31,12 @@ import anh8 from '../../img/Login With Google.png';
 
 
 const RootStyle = styled('div')(({ theme }) => ({
+
   [theme.breakpoints.up('md')]: {
     display: 'flex',
   },
 }));
+
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +51,8 @@ export default function Login() {
   return (
     <Page title="Login">
         <RootStyle>
-            <Box
+            
+        <Box
               sx= {{width: 1100,height: 900,position : 'absolute'}}>
             <Image
                 visibleByDefault

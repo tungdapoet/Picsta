@@ -31,6 +31,7 @@ export const PATH_PAGE = {
   page500: '/500',
   components: '/components',
   blankpage: '/blankpage',
+  demo: '/demo'
 };
 
 export const PATH_DASHBOARD = {

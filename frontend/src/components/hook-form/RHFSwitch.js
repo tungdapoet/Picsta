@@ -14,9 +14,9 @@ export default function RHFSwitch({ name, ...other }) {
   const { control } = useFormContext();
 
   return (
-    <FormControlLabel
+    <FormControlLabel 
       control={
-        <Controller name={name} control={control} render={({ field }) => <Switch {...field} checked={field.value} />} />
+        <Controller name={name} control={control} render={({ field }) => <Switch {...field} checked={field.value}  />} />
       }
       {...other}
     />

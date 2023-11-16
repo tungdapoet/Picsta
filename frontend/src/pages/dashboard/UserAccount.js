@@ -1,6 +1,6 @@
 import { capitalCase } from 'change-case';
 // @mui
-import { Container, Tab, Box, Tabs } from '@mui/material';
+import { Container, Tab, Box, Tabs, Button , Typography} from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks
@@ -20,6 +20,11 @@ import {
   AccountNotifications,
   AccountChangePassword,
 } from '../../sections/@dashboard/user/account';
+import Image from 'src/components/Image';
+import anh1 from  '../../img/follower_.png'
+import profile from  '../../img/shots followers following.png'
+import profile_ from '../../img/Profile_image.png'
+
 
 // ----------------------------------------------------------------------
 
@@ -68,24 +73,33 @@ export default function UserAccount() {
           ]}
         />
 
-        <Tabs
-          allowScrollButtonsMobile
-          variant="scrollable"
-          scrollButtons="auto"
-          value={currentTab}
-          onChange={onChangeTab}
-        >
-          {ACCOUNT_TABS.map((tab) => (
-            <Tab disableRipple key={tab.value} label={capitalCase(tab.value)} icon={tab.icon} value={tab.value} />
-          ))}
-        </Tabs>
-
         <Box sx={{ mb: 5 }} />
-
-        {ACCOUNT_TABS.map((tab) => {
-          const isMatched = tab.value === currentTab;
-          return isMatched && <Box key={tab.value}>{tab.component}</Box>;
-        })}
+        
+        <Button size='medium' sx={{top: 90, withd : 300 ,height: 46, left:1359, position : 'absolute'}}>
+          Account setting
+        </Button>
+        <Image 
+          sx={{top: 260 , withd : 404 ,height: 100, left:845 ,position : 'absolute'}}
+           visibleByDefault
+           disabledEffect
+           src={profile}  
+           />
+        <Image 
+          sx={{top: 220 , withd : 604 ,height: 90, left:400, position : 'absolute'}}
+           visibleByDefault
+           disabledEffect
+           src={profile_}  
+           />
+        <Typography  sx={{top: 240 , withd : 604 ,height: 90, left:500, position : 'absolute',fontSize:20 , fontFamily: 'Karla,sans-serif'}}>Hải béo</Typography>
+        <Typography  sx={{top: 270 , withd : 604 ,height: 90, left:500, position : 'absolute'}}> Chi chi chành chành, im mẹ mồm đê</Typography>
+        
+        
+        
+     
+        <Box sx={{top: 390 , position : 'absolute'}}>
+            <AccountGeneral />
+            <AccountChangePassword />
+        </Box>
       </Container>
     </Page>
   );

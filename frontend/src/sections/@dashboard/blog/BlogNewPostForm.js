@@ -154,14 +154,14 @@ export default function BlogNewPostForm() {
                     name="publish"
                     label="Publish"
                     labelPlacement="start"
-                    sx={{ mb: 1, mx: 0, width: 1, justifyContent: 'space-between' }}
+                    sx={{  color: 'red' , mb: 1, mx: 0, width: 1, justifyContent: 'space-between' }}
                   />
 
                   <RHFSwitch
                     name="comments"
                     label="Enable comments"
                     labelPlacement="start"
-                    sx={{ mx: 0, width: 1, justifyContent: 'space-between' }}
+                    sx={{ color: 'red', mx: 0, width: 1, justifyContent: 'space-between' }}
                   />
                 </div>
 
@@ -213,7 +213,7 @@ export default function BlogNewPostForm() {
               <Button fullWidth color="inherit" variant="outlined" size="large" onClick={handleOpenPreview}>
                 Preview
               </Button>
-              <LoadingButton fullWidth type="submit" variant="contained" size="large" loading={isSubmitting}>
+              <LoadingButton fullWidth type="submit" variant="contained" size="large" loading={isSubmitting} sx={{ bgcolor: 'red' }}>
                 Post
               </LoadingButton>
             </Stack>

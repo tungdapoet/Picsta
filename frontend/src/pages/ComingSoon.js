@@ -7,9 +7,19 @@ import useCountdown from '../hooks/useCountdown';
 import Page from '../components/Page';
 import InputStyle from '../components/InputStyle';
 import SocialsButton from '../components/SocialsButton';
+import Image from 'src/components/Image';
+import Searchbar from 'src/layouts/dashboard/header/Searchbar';
+import NotificationsPopover from 'src/layouts/dashboard/header/NotificationsPopover';
 // assets
 import { ComingSoonIllustration } from '../assets';
-
+import logoimage from '../img/picsta.png'
+import homebutton from '../img/Home-fill.png'
+import settingbutton from '../img/Icon.png'
+import messengerbutton from '../img/Messenger.png'
+import newpostbutton from '../img/NewPosts.png'
+import profilebutton from '../img/Profile_image.png'
+import left from '../img/Left.png'
+import { BlogNewPostForm } from 'src/sections/@dashboard/blog';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -40,63 +50,57 @@ export default function ComingSoon() {
   return (
     <Page title="Coming Soon" sx={{ height: 1 }}>
       <RootStyle>
-        <Container>
-          <Box sx={{ maxWidth: 480, margin: 'auto', textAlign: 'center' }}>
-            <Typography variant="h3" paragraph>
-              Coming Soon!
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>We are currently working hard on this page!</Typography>
-
-            <ComingSoonIllustration sx={{ my: 10, height: 240 }} />
-
-            <CountdownStyle>
-              <div>
-                <Typography variant="h2">{countdown.days}</Typography>
-                <Typography sx={{ color: 'text.secondary' }}>Days</Typography>
-              </div>
-
-              <SeparatorStyle variant="h2">:</SeparatorStyle>
-
-              <div>
-                <Typography variant="h2">{countdown.hours}</Typography>
-                <Typography sx={{ color: 'text.secondary' }}>Hours</Typography>
-              </div>
-
-              <SeparatorStyle variant="h2">:</SeparatorStyle>
-
-              <div>
-                <Typography variant="h2">{countdown.minutes}</Typography>
-                <Typography sx={{ color: 'text.secondary' }}>Minutes</Typography>
-              </div>
-
-              <SeparatorStyle variant="h2">:</SeparatorStyle>
-
-              <div>
-                <Typography variant="h2">{countdown.seconds}</Typography>
-                <Typography sx={{ color: 'text.secondary' }}>Seconds</Typography>
-              </div>
-            </CountdownStyle>
-
-            <InputStyle
-              fullWidth
-              placeholder="Enter your email"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Button variant="contained" size="large">
-                      Notify Me
-                    </Button>
-                  </InputAdornment>
-                ),
-              }}
-              sx={{ my: 5, '& .MuiOutlinedInput-root': { pr: 0.5 } }}
+      <Image 
+            alt='anhlogo'
+            src={logoimage}
+            sx={{width: 180 , height: 55 , top: 21 , left : 32 , position: 'absolute'}}
+          />
+         
+          <Button size= 'medium' sx={{ top: 38 , left : 201 , position : 'absolute'}}>
+            <Image 
+                alt='homebutton'
+                src={homebutton}
             />
-
-            <Stack alignItems="center">
-              <SocialsButton size="large" initialColor />
-            </Stack>
+          </Button>
+          <Box  sx={{width: 900 , height: 50 , top: 38 , left : 380 , position: 'absolute'}}>
+          <Searchbar />
           </Box>
-        </Container>
+          <Button size= 'medium' sx={{ top: 38 , left : 299 , position : 'absolute'}}>
+            <Image 
+                alt='newpost'
+                src={newpostbutton}
+            />
+          </Button>
+          <Button size= 'medium' sx={{ top: 38 , left : 1399 , position : 'absolute'}}>
+            <Image 
+                alt='mess'
+                src={messengerbutton}
+            />
+          </Button>
+          <Button size= 'medium' sx={{ top: 38 , left : 1499 , position : 'absolute'}}>
+            <Image 
+                alt='profile'
+                src={profilebutton}
+            />
+          </Button>
+          <Button size= 'medium' sx={{ top: 38 , left : 1299 , position : 'absolute'}}>
+            <Image 
+                alt='setting'
+                src={settingbutton}
+            />
+          </Button>
+          <Box sx={{ top: 38 , left : 1599 , position : 'absolute'}}>
+            <NotificationsPopover />
+          </Box>
+          <Image 
+             alt='left'
+             src={left}
+             sx={{width: 357 , height: 533 , top: 98 , left : 3 , position: 'absolute'}}
+          />
+          <Box sx={{top: 200 , left: 455 , height: 284 , width: 1031, position: 'absolute' }}>
+            <BlogNewPostForm />
+          </Box>
+          
       </RootStyle>
     </Page>
   );

@@ -2,7 +2,7 @@ import { useSnackbar } from 'notistack';
 // form
 import { useForm } from 'react-hook-form';
 // @mui
-import { Card, Stack, Typography } from '@mui/material';
+import { Grid, Card, Stack, Typography, CardHeader } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import { FormProvider, RHFSwitch } from '../../../../components/hook-form';
@@ -69,7 +69,10 @@ export default function AccountNotifications() {
   };
 
   return (
-    <Card sx={{ p: 3 }}>
+    <Grid container spacing={3} justifyContent="flex-end" sx={{ pt: 3 }} >
+      <Grid item xs={12} md={8}>
+    <Card sx={{ p: 3 }} >
+      <CardHeader title="Notifications" sx={{ padding: '12px 0px 16px' }}/>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3} alignItems="flex-end">
           <Stack spacing={2} sx={{ width: 1 }}>
@@ -95,11 +98,18 @@ export default function AccountNotifications() {
             </Stack>
           </Stack>
 
-          <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+          <LoadingButton type="submit" variant="contained" loading={isSubmitting}
+          sx={{
+                            color: '#FFFFFF', // Change the text color to white
+                            backgroundColor: '#FF6636', // Change the background color to orange
+                          }}
+          >
             Save Changes
           </LoadingButton>
         </Stack>
       </FormProvider>
     </Card>
+    </Grid>
+    </Grid>
   );
 }

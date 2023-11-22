@@ -8,13 +8,14 @@ import { useForm, Controller } from 'react-hook-form';
 // @mui
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
-import { Grid, Card, Chip, Stack, Button, TextField, Typography, Autocomplete } from '@mui/material';
+import { Grid, Card, Chip, Stack, Button, TextField, Typography, Autocomplete , Container } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // components
 import { RHFSwitch, RHFEditor, FormProvider, RHFTextField, RHFUploadSingleFile } from '../../../components/hook-form';
 //
 import BlogNewPostPreview from './BlogNewPostPreview';
+import { UploadSingleFile } from 'src/components/upload';
 
 // ----------------------------------------------------------------------
 
@@ -125,45 +126,15 @@ export default function BlogNewPostForm() {
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      
+        <UploadSingleFile />
+      
+        <Container sx={{left: 1010 , position: 'absolute' , top: 0}}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={8}>
-            <Card sx={{ p: 3 }}>
-              <Stack spacing={3}>
-                <RHFTextField name="title" label="Post Title" />
-
-                <RHFTextField name="description" label="Description" multiline rows={3} />
-
-                <div>
-                  <LabelStyle>Content</LabelStyle>
-                  <RHFEditor name="content" />
-                </div>
-
-                <div>
-                  <LabelStyle>Cover</LabelStyle>
-                  <RHFUploadSingleFile name="cover" accept="image/*" maxSize={3145728} onDrop={handleDrop} />
-                </div>
-              </Stack>
-            </Card>
-          </Grid>
-
           <Grid item xs={12} md={4}>
             <Card sx={{ p: 3 }}>
               <Stack spacing={3}>
-                <div>
-                  <RHFSwitch
-                    name="publish"
-                    label="Publish"
-                    labelPlacement="start"
-                    sx={{  color: 'red' , mb: 1, mx: 0, width: 1, justifyContent: 'space-between' }}
-                  />
-
-                  <RHFSwitch
-                    name="comments"
-                    label="Enable comments"
-                    labelPlacement="start"
-                    sx={{ color: 'red', mx: 0, width: 1, justifyContent: 'space-between' }}
-                  />
-                </div>
+          
 
                 <Controller
                   name="tags"
@@ -184,7 +155,7 @@ export default function BlogNewPostForm() {
                   )}
                 />
 
-                <RHFTextField name="metaTitle" label="Meta title" />
+                <RHFTextField name="metaTitle" label="Meta title"/>
 
                 <RHFTextField name="metaDescription" label="Meta description" fullWidth multiline rows={3} />
 
@@ -210,15 +181,14 @@ export default function BlogNewPostForm() {
             </Card>
 
             <Stack direction="row" spacing={1.5} sx={{ mt: 3 }}>
-              <Button fullWidth color="inherit" variant="outlined" size="large" onClick={handleOpenPreview}>
-                Preview
-              </Button>
-              <LoadingButton fullWidth type="submit" variant="contained" size="large" loading={isSubmitting} sx={{ bgcolor: 'red' }}>
-                Post
+              <LoadingButton fullWidth type="submit" variant="contained" size="large" 
+              loading={isSubmitting} sx={{ bgcolor: 'red' , width: 200 }}>
+                Save Pic
               </LoadingButton>
             </Stack>
           </Grid>
         </Grid>
+        </Container>  
       </FormProvider>
 
       <BlogNewPostPreview

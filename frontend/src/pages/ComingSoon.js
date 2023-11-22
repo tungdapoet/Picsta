@@ -50,45 +50,7 @@ export default function ComingSoon() {
   return (
     <Page title="Coming Soon" sx={{ height: 1 }}>
       <RootStyle>
-      <Image 
-            alt='anhlogo'
-            src={logoimage}
-            sx={{width: 180 , height: 55 , top: 21 , left : 32 , position: 'absolute'}}
-          />
-         
-          <Button size= 'medium' sx={{ top: 38 , left : 201 , position : 'absolute'}}>
-            <Image 
-                alt='homebutton'
-                src={homebutton}
-            />
-          </Button>
-          <Box  sx={{width: 900 , height: 50 , top: 38 , left : 380 , position: 'absolute'}}>
-          <Searchbar />
-          </Box>
-          <Button size= 'medium' sx={{ top: 38 , left : 299 , position : 'absolute'}}>
-            <Image 
-                alt='newpost'
-                src={newpostbutton}
-            />
-          </Button>
-          <Button size= 'medium' sx={{ top: 38 , left : 1399 , position : 'absolute'}}>
-            <Image 
-                alt='mess'
-                src={messengerbutton}
-            />
-          </Button>
-          <Button size= 'medium' sx={{ top: 38 , left : 1499 , position : 'absolute'}}>
-            <Image 
-                alt='profile'
-                src={profilebutton}
-            />
-          </Button>
-          <Button size= 'medium' sx={{ top: 38 , left : 1299 , position : 'absolute'}}>
-            <Image 
-                alt='setting'
-                src={settingbutton}
-            />
-          </Button>
+      
           <Box sx={{ top: 38 , left : 1599 , position : 'absolute'}}>
             <NotificationsPopover />
           </Box>

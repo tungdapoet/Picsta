@@ -51,69 +51,70 @@ export default function Login() {
   return (
     <Page title="Login">
         <RootStyle>
-            
-        <Box
-              sx= {{width: 1100,height: 900,position : 'absolute'}}>
-            <Image
-                visibleByDefault
-                disabledEffect
-                src={anh1}
-              />
-            </Box>
-            <Box sx={{
-                position: 'absolute',
-                left: 1130,top: 48,width: 160,height: 12}}>
-                <Image
-                  visibleByDefault
-                  disabledEffect
-                  src={anh3}
-                />
-            </Box>
-            <Box sx={{
-                position: 'absolute',
-                left: 1130,top: 125 ,width: 200,height: 16}}>
-                <Image
-                    visibleByDefault
-                    disabledEffect
-                    src={anh4}
-                       />
-            </Box>
-            <Button
-              size="medium"
-              component={RouterLink}
-              to=""
-              sx={{position: 'absolute',
-              left: 1130,top: 480, width: 399 }}
-            >
-              <Image
-                  visibleByDefault
-                  disabledEffect
-                  src={anh7}
-                />
-            </Button>
-            <Button
-              size="medium"
-              component={RouterLink}
-              to=""
-              sx={{position: 'absolute',
-              left: 1130,top: 540, width: 399 }}
-            >
-              <Image
-                  visibleByDefault
-                  disabledEffect
-                  src={anh8}
-                />
-            </Button>
-            <Box sx={{
-                position: 'absolute',
-                left: 1130,top: 180, width: 399 }}>
-              <LoginForm />
-            </Box>
-            <Typography
-                sx= {{width: 228,height: 20, gap: 8, top:677.5, left:1130,
-                      position: 'absolute', whiteSpace: 'nowrap',
-                     }}>Dont have an account ? <a href="https://www.google.com">Sign up now</a>
-            </Typography>
+        <Container maxWidth="xl" maxHeight="xl">
+              <Container
+                    sx= {{width: 1100,height: 800,position : 'absolute'}}>
+                  <Image
+                      visibleByDefault
+                      disabledEffect
+                      src={anh1}
+                    />
+              </Container>
+                  <Container sx={{
+                      position: 'absolute',
+                      left: 1130,top: 48,width: 160,height: 12}}>
+                      <Image
+                        visibleByDefault
+                        disabledEffect
+                        src={anh3}
+                      />
+                  </Container>
+                  <Container sx={{
+                      position: 'absolute',
+                      left: 1130,top: 125 ,width: 200,height: 16}}>
+                      <Image
+                          visibleByDefault
+                          disabledEffect
+                          src={anh4}
+                            />
+                  </Container>
+                  <Button
+                    size="medium"
+                    component={RouterLink}
+                    to=""
+                    sx={{position: 'absolute',
+                    left: 1130,top: 480, width: 399 }}
+                  >
+                    <Image
+                        visibleByDefault
+                        disabledEffect
+                        src={anh7}
+                      />
+                  </Button>
+                  <Button
+                    size="medium"
+                    component={RouterLink}
+                    to=""
+                    sx={{position: 'absolute',
+                    left: 1130,top: 540, width: 399 }}
+                  >
+                    <Image
+                        visibleByDefault
+                        disabledEffect
+                        src={anh8}
+                      />
+                  </Button>
+                  <Container sx={{
+                      position: 'absolute',
+                      left: 1130,top: 180, width: 399 }}>
+                    <LoginForm />
+                  </Container>
+                  <Typography
+                      sx= {{width: 228,height: 20, gap: 8, top:677.5, left:1130,
+                            position: 'absolute', whiteSpace: 'nowrap',
+                          }}>Dont have an account ? <a href="https://www.google.com">Sign up now</a>
+                  </Typography>
+            </Container>
         </RootStyle>
     </Page>
   );

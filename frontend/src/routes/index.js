@@ -159,6 +159,7 @@ export default function Router() {
         { path: 'about-us', element: <About /> },
         { path: 'contact-us', element: <Contact /> },
         { path: 'faqs', element: <Faqs /> },
+        { path: 'editprofile', element: <UserEditProfile /> },
       ],
     },
     { path: '*', element: <Navigate to="/404" replace /> },
@@ -223,3 +224,4 @@ const Payment = Loadable(lazy(() => import('../pages/Payment')));
 const Page500 = Loadable(lazy(() => import('../pages/Page500')));
 const NotFound = Loadable(lazy(() => import('../pages/Page404')));
 const BlankPage = Loadable(lazy(() => import('../pages/BlankPage')));
+const UserEditProfile = Loadable(lazy(() => import('../pages/UserEditProfile')));

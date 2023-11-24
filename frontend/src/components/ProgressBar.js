@@ -8,6 +8,7 @@ import { GlobalStyles } from '@mui/material';
 
 export function ProgressBarStyle() {
   const theme = useTheme();
+
   return (
     <GlobalStyles
       styles={{

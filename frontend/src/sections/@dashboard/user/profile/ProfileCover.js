@@ -48,7 +48,7 @@ ProfileCover.propTypes = {
 export default function ProfileCover({ myProfile }) {
   const { user } = useAuth();
 
-  const { quote, cover } = myProfile;
+  const { position, cover } = myProfile;
 
   return (
     <RootStyle>
@@ -72,7 +72,7 @@ export default function ProfileCover({ myProfile }) {
           }}
         >
           <Typography variant="h4">{user?.displayName}</Typography>
-          <Typography sx={{ opacity: 0.72 }}>"{quote}"</Typography>
+          <Typography sx={{ opacity: 0.72 }}>{position}</Typography>
         </Box>
       </InfoStyle>
       <Image alt="profile cover" src={cover} sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />

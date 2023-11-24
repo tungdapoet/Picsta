@@ -9,7 +9,6 @@ import Image from '../Image';
 import RejectionFiles from './RejectionFiles';
 import BlockContent from './BlockContent';
 
-
 // ----------------------------------------------------------------------
 
 const DropZoneStyle = styled('div')(({ theme }) => ({
@@ -19,7 +18,7 @@ const DropZoneStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(5, 1),
   borderRadius: theme.shape.borderRadius,
   transition: theme.transitions.create('padding'),
-  backgroundColor: theme.palette.background.white,
+  backgroundColor: theme.palette.background.neutral,
   border: `1px dashed ${theme.palette.grey[500_32]}`,
   '&:hover': { opacity: 0.72, cursor: 'pointer' },
 }));

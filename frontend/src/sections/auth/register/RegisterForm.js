@@ -88,10 +88,8 @@ export default function RegisterForm() {
           }}
         />
 
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}
-          sx={{ bgcolor: '#004d40' }}
-        >
-          Signup
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+          Register
         </LoadingButton>
       </Stack>
     </FormProvider>

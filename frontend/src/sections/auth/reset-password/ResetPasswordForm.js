@@ -51,11 +51,9 @@ export default function ResetPasswordForm({ onSent, onGetEmail }) {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <RHFTextField name="email" label="Email address" />
-                      
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}
-          sx={{ bgcolor: '#004d40' }}
-        >
-          SEND OTP
+
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+          Reset Password
         </LoadingButton>
       </Stack>
     </FormProvider>

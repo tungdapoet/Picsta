@@ -30,6 +30,34 @@ const navConfig = [
   {
     subheader: 'general',
     items: [
+      { title: 'home', path: PATH_DASHBOARD.general.home, icon: ICONS.dashboard },
+      { title: 'categories', path: PATH_DASHBOARD.general.categories, icon: ICONS.analytics },
+      {
+        title: 'pin',
+        path: PATH_DASHBOARD.general.pin.detail,
+        icon: ICONS.ecommerce,
+        children: [
+          { title: 'details', path: PATH_DASHBOARD.general.pin.detail, icon: ICONS.dashboard },
+          { title: 'create', path: PATH_DASHBOARD.general.pin.create, icon: ICONS.ecommerce },
+        ]
+      },
+      {
+        title: 'profile',
+        path: PATH_DASHBOARD.general.profile.detail,
+        icon: ICONS.ecommerce,
+        children: [
+          { title: 'details', path: PATH_DASHBOARD.general.profile.detail, icon: ICONS.dashboard },
+          { title: 'edit', path: PATH_DASHBOARD.general.profile.edit, icon: ICONS.ecommerce },
+        ]
+      },
+      { title: 'settings', path: PATH_DASHBOARD.general.settings, icon: ICONS.analytics },
+    ],
+  },
+  // GENERAL
+  // ----------------------------------------------------------------------
+  {
+    subheader: 'general (template)',
+    items: [
       { title: 'app', path: PATH_DASHBOARD.general.app, icon: ICONS.dashboard },
       { title: 'e-commerce', path: PATH_DASHBOARD.general.ecommerce, icon: ICONS.ecommerce },
       { title: 'analytics', path: PATH_DASHBOARD.general.analytics, icon: ICONS.analytics },

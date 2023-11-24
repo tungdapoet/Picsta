@@ -17,10 +17,9 @@ export function RHFCheckbox({ name, ...other }) {
     <FormControlLabel
       control={
         <Controller
-          sx={{ color: 'info.main' }}
           name={name}
           control={control}
-          render={({ field }) => <Checkbox {...field} checked={field.value} sx={{ color: 'info.main' }}/>}
+          render={({ field }) => <Checkbox {...field} checked={field.value} />}
         />
       }
       {...other}
@@ -50,11 +49,9 @@ export function RHFMultiCheckbox({ name, options, ...other }) {
           <FormGroup>
             {options.map((option) => (
               <FormControlLabel
-                sx={{ color: 'info.main' }}
                 key={option}
                 control={
                   <Checkbox
-                    sx={{ color: 'info.main' }}
                     checked={field.value.includes(option)}
                     onChange={() => field.onChange(onSelected(option))}
                   />

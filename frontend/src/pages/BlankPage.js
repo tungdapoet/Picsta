@@ -4,8 +4,7 @@ import { Box, Typography, Button, Avatar } from '@mui/material';
 const bannerImagePath = require('../img/anh.png'); 
 const avatarImagePath = require('../img/Profile_image.png');
 
-const Profile = () => {
-  return (
+const Profile = () => (
     <Box sx={{
       display: 'flex',
       flexDirection: 'column',
@@ -74,6 +73,5 @@ const Profile = () => {
       </Box>
     </Box>
   );
-};
 
 export default Profile;

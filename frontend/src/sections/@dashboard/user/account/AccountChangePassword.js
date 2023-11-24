@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 // @mui
-import { Grid, Stack, Card, CardHeader } from '@mui/material';
+import { Stack, Card } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import { FormProvider, RHFTextField } from '../../../../components/hook-form';
@@ -48,10 +48,7 @@ export default function AccountChangePassword() {
   };
 
   return (
-  <Grid container spacing={3} justifyContent="flex-end" sx={{ pt: 3 }} >
-    <Grid item xs={12} md={8}>
     <Card sx={{ p: 3 }}>
-    <CardHeader title="Change password" sx={{ padding: '12px 0px 16px' }}/>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3} alignItems="flex-end">
           <RHFTextField name="oldPassword" type="password" label="Old Password" />
@@ -60,20 +57,11 @@ export default function AccountChangePassword() {
 
           <RHFTextField name="confirmNewPassword" type="password" label="Confirm New Password" />
 
-          <LoadingButton type="submit" variant="contained" loading={isSubmitting}
-            sx={{
-              color: '#FFFFFF', // Change the text color to white
-              backgroundColor: '#FF6636', // Change the background color to orange
-            }}
-          >
+          <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
             Save Changes
           </LoadingButton>
         </Stack>
       </FormProvider>
     </Card>
-    </Grid>
-  </Grid>
   );
-
-
 }

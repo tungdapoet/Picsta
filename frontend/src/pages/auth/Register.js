@@ -2,7 +2,7 @@ import { capitalCase } from 'change-case';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Link, Container, Typography, Tooltip, Stack , Button } from '@mui/material';
+import { Box, Card, Link, Container, Typography, Tooltip } from '@mui/material';
 // hooks
 import useAuth from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
@@ -14,99 +14,124 @@ import Logo from '../../components/Logo';
 import Image from '../../components/Image';
 // sections
 import { RegisterForm } from '../../sections/auth/register';
-//image
-import anh7 from '../../img/Facebook.png';
-import anh8 from '../../img/Google.png';
-import anhlacay from '../../img/anh1.png'
-import anhlogo from '../../img/anh2.png'
-import Getstarted from '../../img/Get Started Now.png'
-import Sologan from '../../img/Enter your Credentials to access your account.png'
-import { blue } from '@mui/material/colors';
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-        [theme.breakpoints.up('md')]: {
-          display: 'flex',
-        },
-      }));
+  [theme.breakpoints.up('md')]: {
+    display: 'flex',
+  },
+}));
+
+const HeaderStyle = styled('header')(({ theme }) => ({
+  top: 0,
+  zIndex: 9,
+  lineHeight: 0,
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  position: 'absolute',
+  padding: theme.spacing(3),
+  justifyContent: 'space-between',
+  [theme.breakpoints.up('md')]: {
+    alignItems: 'flex-start',
+    padding: theme.spacing(7, 5, 0, 7),
+  },
+}));
+
+const SectionStyle = styled(Card)(({ theme }) => ({
+  width: '200%',
+  maxWidth: '200%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  margin: theme.spacing(2, 0, 2, 2),
+}));
+
+const ContentStyle = styled('div')(({ theme }) => ({
+  maxWidth: '50%',
+  margin: 'auto',
+  display: 'flex',
+  minHeight: '100vh',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  padding: theme.spacing(12, 0),
+}));
+
 // ----------------------------------------------------------------------
 
 export default function Register() {
-  
+  const { method } = useAuth();
+
+  const smUp = useResponsive('up', 'sm');
+
+  const mdUp = useResponsive('up', 'md');
+
   return (
     <Page title="Register">
       <RootStyle>
-        <Box sx={{position:'absolute',top: 26, left: 22,}}>
-          <Image
-                  visibleByDefault
-                  disabledEffect
-                  src={anhlogo}
-              />
-        </Box>
-         <Box sx={{
-           position: 'absolute', width: 781, height: 1030, top: 0, left: 819,}}>
-            <Image
-                visibleByDefault
-                disabledEffect
-                src={anhlacay}
-            />
-         </Box>
-         <Box sx={{
-           position: 'absolute',width: 277,height: 48,top: 195,left: 212}}>
-            <Image
-                visibleByDefault
-                disabledEffect
-                src={Getstarted}
-            />
-         </Box>
-         <Box sx={{
-           position: 'absolute',
-           width: 372,
-           height: 26.26,
-           top: 247.53,
-           left: 212}}>
-            <Image
-                visibleByDefault
-                disabledEffect
-                src={Sologan}
-            />
-         </Box>
-         <Container
-            sx={{position: 'absolute',width: 450,height: 35.02, top: 293.49, left: 188,}}>
-              <RegisterForm />
-         </Container>
-         <Button
-              size="medium"
-              component={RouterLink}
-              to=""
-              sx={{ position: 'absolute',width: 399, height: 45,  top: 650,   left: 197,borderRadius: 10,
-              backgroundColor: blue,}} >
-              <Image
-                  sx={{width: 259}}
-                  visibleByDefault
-                  disabledEffect
-                  src={anh7}
-                />
-            </Button>
-            <Button
-              size="medium"
-              component={RouterLink}
-              to=""
-              sx={{width: 399, height: 45,top: 720,left: 197, borderRadius: 10,
-                position: 'absolute', }}>
-              <Image
-                  sx={{width: 259}}
-                  visibleByDefault
-                  disabledEffect
-                  src={anh8}
-                />
-            </Button>
-            <Typography
-                sx= {{width: 183,  height: 21, fontSize: 20, position: 'absolute', top: 810.02,
-                left: 210, whiteSpace: 'nowrap'}}>
-                  Have an account ? <a href="https://www.google.com">Sign in</a>
+        <HeaderStyle>
+          <Logo />
+          {smUp && (
+            <Typography variant="body2" sx={{ mt: { md: -2 } }}>
+              Already have an account?{' '}
+              <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.login}>
+                Login
+              </Link>
             </Typography>
-      </RootStyle>     
+          )}
+        </HeaderStyle>
+
+        {mdUp && (
+          <SectionStyle>
+            <Image
+                visibleByDefault
+                disabledEffect
+                alt="login"
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center'
+                }}
+                src="https://picsum.photos/1024/768"
+            />
+          </SectionStyle>
+        )}
+
+        <Container>
+          <ContentStyle>
+            <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography variant="h4" gutterBottom>
+                  Get started now.
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}>Free forever. No credit card needed.</Typography>
+              </Box>
+              <Tooltip title={capitalCase(method)}>
+                <>
+                  <Image
+                    disabledEffect
+                    src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
+                    sx={{ width: 32, height: 32 }}
+                  />
+                </>
+              </Tooltip>
+            </Box>
+
+            <RegisterForm />
+
+            {!smUp && (
+              <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
+                Already have an account?{' '}
+                <Link variant="subtitle2" to={PATH_AUTH.login} component={RouterLink}>
+                  Login
+                </Link>
+              </Typography>
+            )}
+          </ContentStyle>
+        </Container>
+      </RootStyle>
     </Page>
   );
 }

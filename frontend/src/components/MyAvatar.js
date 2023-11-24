@@ -4,8 +4,7 @@ import useAuth from '../hooks/useAuth';
 import createAvatar from '../utils/createAvatar';
 //
 import Avatar from './Avatar';
-import Image from './Image';
-import ava from '../img/Image.png'
+
 // ----------------------------------------------------------------------
 
 export default function MyAvatar({ ...other }) {
@@ -13,14 +12,12 @@ export default function MyAvatar({ ...other }) {
 
   return (
     <Avatar
-      src={/*user?.photoURL*/ava}
+      src={user?.photoURL}
       alt={user?.displayName}
       color={user?.photoURL ? 'default' : createAvatar(user?.displayName).color}
       {...other}
     >
       {createAvatar(user?.displayName).name}
-      
     </Avatar>
-    
   );
 }

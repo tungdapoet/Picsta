@@ -1,20 +1,38 @@
 // @mui
-import { Box, Typography, Stack , Container } from '@mui/material';
+import { Box, Typography, Stack } from '@mui/material';
 // assets
 import { UploadIllustration } from '../../assets';
-import uploadfile_img from '../../img/Upload Field.png'
-import Image from '../Image';
-import vector from '../../img/Vector.png';
+
 // ----------------------------------------------------------------------
 
 export default function BlockContent() {
   return (
-    <Container>
-      <Image src={uploadfile_img} />
-      <Image src={vector}
-      sx= {{top: 120 , width: 200 , left: 430 ,position: 'absolute'}}
-      />
-    </Container>
-   
+    <Stack
+      spacing={2}
+      alignItems="center"
+      justifyContent="center"
+      direction={{ xs: 'column', md: 'row' }}
+      sx={{ width: 1, textAlign: { xs: 'center', md: 'left' } }}
+    >
+      <UploadIllustration sx={{ width: 220 }} />
+
+      <Box sx={{ p: 3 }}>
+        <Typography gutterBottom variant="h5">
+          Drop or Select file
+        </Typography>
+
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          Drop files here or click&nbsp;
+          <Typography
+            variant="body2"
+            component="span"
+            sx={{ color: 'primary.main', textDecoration: 'underline' }}
+          >
+            browse
+          </Typography>
+          &nbsp;thorough your machine
+        </Typography>
+      </Box>
+    </Stack>
   );
 }

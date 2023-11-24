@@ -1,7 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, useRoutes, useLocation } from 'react-router-dom';
-// layouts
-import MainLayout from '../layouts/main';
+
 import DashboardLayout from '../layouts/dashboard';
 import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
 // guards
@@ -64,6 +63,25 @@ export default function Router() {
       ),
       children: [
         { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
+        { path: 'home', element: <HomePage /> },
+        { path: 'categories', element: <Categories /> },
+        {
+          path: 'pin',
+          children: [
+            { element: <Navigate to="/dashboard/pin/detail" replace />, index: true },
+            { path: 'detail', element: <PinDetail /> },
+            { path: 'create', element: <CreatePin /> },
+          ]
+        },
+        {
+          path: 'profile',
+          children: [
+            { element: <Navigate to="/dashboard/profile/detail" replace />, index: true },
+            { path: 'detail', element: <ProfileDetail /> },
+            { path: 'edit', element: <EditProfile /> },
+          ]
+        },
+        { path: 'settings', element: <AccountSettings /> },
         { path: 'app', element: <GeneralApp /> },
         { path: 'ecommerce', element: <GeneralEcommerce /> },
         { path: 'analytics', element: <GeneralAnalytics /> },
@@ -86,7 +104,7 @@ export default function Router() {
           path: 'user',
           children: [
             { element: <Navigate to="/dashboard/user/profile" replace />, index: true },
-            { path: 'profile', element: <UserProfile /> },
+            { path: 'profile-1', element: <UserProfile /> },
             { path: 'cards', element: <UserCards /> },
             { path: 'list', element: <UserList /> },
             { path: 'new', element: <UserCreate /> },
@@ -141,25 +159,21 @@ export default function Router() {
       path: '*',
       element: <LogoOnlyLayout />,
       children: [
-        { path: 'coming-soon', element: <ComingSoon /> },
-        { path: 'maintenance', element: <Maintenance /> },
-        { path: 'pricing', element: <Pricing /> },
-        { path: 'payment', element: <Payment /> },
+        { element: <Navigate to="/dashboard/home" replace />, index: true },
         { path: '500', element: <Page500 /> },
         { path: '404', element: <NotFound /> },
-        { path: 'blankpage', element: <BlankPage /> },
         { path: '*', element: <Navigate to="/404" replace /> },
       ],
     },
     {
       path: '/',
-      element: <MainLayout />,
+      element: (
+          <AuthGuard>
+            <DashboardLayout />
+          </AuthGuard>
+      ),
       children: [
-        { element: <HomePage />, index: true },
-        { path: 'about-us', element: <About /> },
-        { path: 'contact-us', element: <Contact /> },
-        { path: 'faqs', element: <Faqs /> },
-        { path: 'editprofile', element: <UserEditProfile /> },
+        { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true }
       ],
     },
     { path: '*', element: <Navigate to="/404" replace /> },
@@ -173,6 +187,23 @@ const ResetPassword = Loadable(lazy(() => import('../pages/auth/ResetPassword'))
 const VerifyCode = Loadable(lazy(() => import('../pages/auth/VerifyCode')));
 
 // DASHBOARD
+
+// HOME
+const HomePage = Loadable(lazy(() => import('../pages/dashboard/general/Home')));
+
+// PIN
+const PinDetail = Loadable(lazy(() => import('../pages/dashboard/pin/Pin')));
+const CreatePin = Loadable(lazy(() => import('../pages/dashboard/pin/CreatePin')));
+
+// PROFILE
+const ProfileDetail = Loadable(lazy(() => import('../pages/dashboard/profile/Profile')));
+const EditProfile = Loadable(lazy(() => import('../pages/dashboard/profile/EditProfile')));
+
+// SETTINGS
+const AccountSettings = Loadable(lazy(() => import('../pages/dashboard/general/AccountSettings')));
+
+// SETTINGS
+const Categories = Loadable(lazy(() => import('../pages/dashboard/general/Categories')));
 
 // GENERAL
 const GeneralApp = Loadable(lazy(() => import('../pages/dashboard/GeneralApp')));
@@ -213,15 +244,5 @@ const Calendar = Loadable(lazy(() => import('../pages/dashboard/Calendar')));
 const Kanban = Loadable(lazy(() => import('../pages/dashboard/Kanban')));
 
 // MAIN
-const HomePage = Loadable(lazy(() => import('../pages/Home')));
-const About = Loadable(lazy(() => import('../pages/About')));
-const Contact = Loadable(lazy(() => import('../pages/Contact')));
-const Faqs = Loadable(lazy(() => import('../pages/Faqs')));
-const ComingSoon = Loadable(lazy(() => import('../pages/ComingSoon')));
-const Maintenance = Loadable(lazy(() => import('../pages/Maintenance')));
-const Pricing = Loadable(lazy(() => import('../pages/Pricing')));
-const Payment = Loadable(lazy(() => import('../pages/Payment')));
 const Page500 = Loadable(lazy(() => import('../pages/Page500')));
 const NotFound = Loadable(lazy(() => import('../pages/Page404')));
-const BlankPage = Loadable(lazy(() => import('../pages/BlankPage')));
-const UserEditProfile = Loadable(lazy(() => import('../pages/UserEditProfile')));

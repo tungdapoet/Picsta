@@ -1,13 +1,8 @@
 import { capitalCase } from 'change-case';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
-import IconButton from '@mui/material/IconButton';
-import FilledInput from '@mui/material/FilledInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 import { styled } from '@mui/material/styles';
-import { Box, Card, Stack, Link, Alert, Tooltip, Container, Typography, TextField, Button } from '@mui/material';
+import { Box, Card, Stack, Link, Alert, Tooltip, Container, Typography } from '@mui/material';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // hooks
@@ -19,24 +14,49 @@ import Logo from '../../components/Logo';
 import Image from '../../components/Image';
 // sections
 import { LoginForm } from '../../sections/auth/login';
-import { User } from '@auth0/auth0-spa-js';
-//image
-import anh1 from '../../img/anh.png';
-import anh3 from '../../img/picsta.png';
-import anh4 from '../../img/nice_to_see.png';
-import anh7 from '../../img/Login With Facebook.png';
-import anh8 from '../../img/Login With Google.png';
 
 // ----------------------------------------------------------------------
 
-
 const RootStyle = styled('div')(({ theme }) => ({
-
   [theme.breakpoints.up('md')]: {
     display: 'flex',
   },
 }));
 
+const HeaderStyle = styled('header')(({ theme }) => ({
+  top: 0,
+  zIndex: 9,
+  lineHeight: 0,
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  position: 'absolute',
+  padding: theme.spacing(3),
+  justifyContent: 'space-between',
+  [theme.breakpoints.up('md')]: {
+    alignItems: 'flex-start',
+    padding: theme.spacing(7, 5, 0, 7),
+  },
+}));
+
+const SectionStyle = styled(Card)(({ theme }) => ({
+  width: '200%',
+  maxWidth: '200%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  margin: theme.spacing(2, 0, 2, 2),
+}));
+
+const ContentStyle = styled('div')(({ theme }) => ({
+  maxWidth: '50%',
+  margin: 'auto',
+  display: 'flex',
+  minHeight: '100vh',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  padding: theme.spacing(12, 0),
+}));
 
 // ----------------------------------------------------------------------
 
@@ -47,75 +67,72 @@ export default function Login() {
 
   const mdUp = useResponsive('up', 'md');
 
-  
   return (
     <Page title="Login">
-        <RootStyle>
-        <Container maxWidth="xl" maxHeight="xl">
-              <Container
-                    sx= {{width: 1100,height: 800,position : 'absolute'}}>
+      <RootStyle>
+        <HeaderStyle>
+          <Logo />
+          {smUp && (
+            <Typography variant="body2" sx={{ mt: { md: -2 } }}>
+              Don’t have an account? {''}
+              <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.register}>
+                Get started
+              </Link>
+            </Typography>
+          )}
+        </HeaderStyle>
+
+        {mdUp && (
+            <SectionStyle>
+              <Image
+                  visibleByDefault
+                  disabledEffect
+                  alt="login"
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center'
+                  }}
+                  src="https://picsum.photos/1024/768"
+              />
+            </SectionStyle>
+        )}
+
+        <Container maxWidth="40%">
+          <ContentStyle>
+            <Stack direction="row" alignItems="center" sx={{ mb: 5 }}>
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography variant="h4" gutterBottom>
+                  Sign in to Minimal
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}>Enter your details below.</Typography>
+              </Box>
+
+              <Tooltip title={capitalCase(method)} placement="right">
+                <>
                   <Image
-                      visibleByDefault
-                      disabledEffect
-                      src={anh1}
-                    />
-              </Container>
-                  <Container sx={{
-                      position: 'absolute',
-                      left: 1130,top: 48,width: 160,height: 12}}>
-                      <Image
-                        visibleByDefault
-                        disabledEffect
-                        src={anh3}
-                      />
-                  </Container>
-                  <Container sx={{
-                      position: 'absolute',
-                      left: 1130,top: 125 ,width: 200,height: 16}}>
-                      <Image
-                          visibleByDefault
-                          disabledEffect
-                          src={anh4}
-                            />
-                  </Container>
-                  <Button
-                    size="medium"
-                    component={RouterLink}
-                    to=""
-                    sx={{position: 'absolute',
-                    left: 1130,top: 480, width: 399 }}
-                  >
-                    <Image
-                        visibleByDefault
-                        disabledEffect
-                        src={anh7}
-                      />
-                  </Button>
-                  <Button
-                    size="medium"
-                    component={RouterLink}
-                    to=""
-                    sx={{position: 'absolute',
-                    left: 1130,top: 540, width: 399 }}
-                  >
-                    <Image
-                        visibleByDefault
-                        disabledEffect
-                        src={anh8}
-                      />
-                  </Button>
-                  <Container sx={{
-                      position: 'absolute',
-                      left: 1130,top: 180, width: 399 }}>
-                    <LoginForm />
-                  </Container>
-                  <Typography
-                      sx= {{width: 228,height: 20, gap: 8, top:677.5, left:1130,
-                            position: 'absolute', whiteSpace: 'nowrap',
-                          }}>Dont have an account ? <a href="https://www.google.com">Sign up now</a>
-                  </Typography>
-            </Container>
-        </RootStyle>
+                    disabledEffect
+                    src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
+                    sx={{ width: 32, height: 32 }}
+                  />
+                </>
+              </Tooltip>
+            </Stack>
+
+            <LoginForm />
+
+            {!smUp && (
+              <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+                Don’t have an account?{' '}
+                <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.register}>
+                  Get started
+                </Link>
+              </Typography>
+            )}
+          </ContentStyle>
+        </Container>
+      </RootStyle>
     </Page>
   );
 }

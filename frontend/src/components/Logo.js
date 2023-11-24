@@ -3,8 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
-import logo_ from '../img/picsta.png';
-import Image from './Image';
+
 // ----------------------------------------------------------------------
 
 Logo.propTypes = {
@@ -57,5 +56,5 @@ export default function Logo({ disabledLink = false, sx }) {
     return <>{logo}</>;
   }
 
-  return <RouterLink to="/"><Image src={logo_} sx={{width: 150,  marginLeft: 2 , marginTop: 1.5 }} /></RouterLink>;
+  return <RouterLink to="/">{logo}</RouterLink>;
 }

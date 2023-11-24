@@ -30,14 +30,24 @@ export const PATH_PAGE = {
   page404: '/404',
   page500: '/500',
   components: '/components',
-  blankpage: '/blankpage',
-  usereditprofile: '/editprofile'
-  demo: '/demo'
 };
 
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   general: {
+    home: path(ROOTS_DASHBOARD, '/home'),
+    pin: {
+      root: path(ROOTS_DASHBOARD, '/pin'),
+      detail: path(ROOTS_DASHBOARD, '/pin/detail'),
+      create: path(ROOTS_DASHBOARD, '/pin/create'),
+    },
+    profile: {
+      root: path(ROOTS_DASHBOARD, '/profile'),
+      detail: path(ROOTS_DASHBOARD, '/profile/detail'),
+      edit: path(ROOTS_DASHBOARD, '/profile/edit'),
+    },
+    settings: path(ROOTS_DASHBOARD, '/settings'),
+    categories: path(ROOTS_DASHBOARD, '/categories'),
     app: path(ROOTS_DASHBOARD, '/app'),
     ecommerce: path(ROOTS_DASHBOARD, '/ecommerce'),
     analytics: path(ROOTS_DASHBOARD, '/analytics'),

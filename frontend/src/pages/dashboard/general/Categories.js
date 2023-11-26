@@ -6,6 +6,27 @@ import CategoryImage2 from '../../../img/Category_2.png';
 import CategoryImage3 from '../../../img/Category_3.png';
 import CategoryImage4 from '../../../img/Category_4.png';
 
+const CategoryCard = ({ title, imagePath, link }) => (
+  <Grid item xs={12} sm={6}>
+    <Link href={link} underline="none">
+      <Card>
+        <div style={{ position: 'relative' }}>
+          <img
+            src={imagePath}
+            alt={title}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', aspectRatio: '3/1'}}
+          />
+          <CardContent style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
+            <Typography variant="h6" component="h2" style={{ color: 'white', fontFamily: 'Arial, sans-serif' }}>
+              {title}
+            </Typography>
+          </CardContent>
+        </div>
+      </Card>
+    </Link>
+  </Grid>
+);
+
 export default function CategoriesPage() {
   const categories = [
     { title: 'Arabic poetry', imagePath: CategoryImage1, link: '#category_1' },
@@ -21,29 +42,11 @@ export default function CategoriesPage() {
   ];
 
   return (
-
     <Grid container justifyContent="center">
       <Grid item xs={12} md={8}>
         <Grid container spacing={2}>
           {categories.map((category, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <Link href={category.link} underline="none">
-                <Card>
-                  <div style={{ position: 'relative' }}>
-                    <img
-                      src={category.imagePath}
-                      alt={category.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', aspectRatio: '3/1'}}
-                    />
-                    <CardContent style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
-                      <Typography variant="h6" component="h2" style={{ color: 'white', fontFamily: 'Arial, san-serif' }}>
-                        {category.title}
-                      </Typography>
-                    </CardContent>
-                  </div>
-                </Card>
-              </Link>
-            </Grid>
+            <CategoryCard key={index} {...category} />
           ))}
         </Grid>
       </Grid>
@@ -56,25 +59,8 @@ export default function CategoriesPage() {
 
       <Grid item xs={12} md={8}>
         <Grid container spacing={2}>
-          {popularCategories.map((category, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <Link href={category.link} underline="none">
-                <Card>
-                  <div style={{ position: 'relative' }}>
-                    <img
-                      src={category.imagePath}
-                      alt={category.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', aspectRatio: '3/1' }}
-                    />
-                    <CardContent style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
-                      <Typography variant="h6" component="h2" style={{ color: 'white', fontFamily: 'Arial, sans-serif' }}>
-                        {category.title}
-                      </Typography>
-                    </CardContent>
-                  </div>
-                </Card>
-              </Link>
-            </Grid>
+          {categories.map((category, index) => (
+            <CategoryCard key={index} {...category} />
           ))}
         </Grid>
       </Grid>

@@ -62,22 +62,8 @@ const Profile = () => {
            Tiểu sử ở đây
          </Typography>
 
-
-        {/* Action Buttons */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3 }}>
-          <Button variant="outlined" onClick={handleFollowClick} sx={{ marginX: 2, borderColor: '#A5A58D', borderRadius: '10px',color: 'black' }}>
-            {isFollowed ? 'Unfollow' : 'Follow'}
-          </Button>
-          <Button variant="outlined" sx={{ marginX: 2, borderColor: '#A5A58D', borderRadius: '10px',color: 'black' }}>
-            Message
-          </Button>
-          <Button variant="outlined" onClick={handleBlockClick} sx={{ marginX: 2, borderColor: '#A5A58D', borderRadius: '10px',color: 'black' }}>
-            Block
-          </Button>
-        </Box>
-
         {/* Stats Section */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 5 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3 }}>
           <Box sx={{ textAlign: 'center', paddingX: 2, borderRight: 1, borderColor: 'black' }}>
             <Typography sx={{ fontSize: '1.25rem' }}>{postsCount}</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary'}}>Posts</Typography>
@@ -91,7 +77,50 @@ const Profile = () => {
             <Typography variant="body2" sx={{ color: 'text.secondary'}}>Following</Typography>
           </Box>
         </Box>
-
+{/* Action Buttons */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3 }}>
+           <Button
+             variant="outlined"
+             onClick={handleFollowClick}
+             sx={{
+               marginX: 3,
+               borderColor: '#A5A58D',
+               borderRadius: '10px',
+               color: 'black',
+               fontWeight: 'normal',
+               fontSize: '1.1rem'
+             }}
+           >
+             {isFollowed ? 'Unfollow' : 'Follow'}
+           </Button>
+           <Button
+             variant="outlined"
+             sx={{
+               marginX: 3,
+               borderColor: '#A5A58D',
+               borderRadius: '10px',
+               color: 'black',
+               fontWeight: 'normal',
+               fontSize: '1.1rem'
+             }}
+           >
+             Message
+           </Button>
+           <Button
+             variant="outlined"
+             onClick={handleBlockClick}
+             sx={{
+               marginX: 3,
+               borderColor: '#A5A58D',
+               borderRadius: '10px',
+               color: 'black',
+               fontWeight: 'normal',
+               fontSize: '1.1rem'
+             }}
+           >
+             Block
+           </Button>
+         </Box>
 
         {/* Block Confirmation Dialog */}
         <Dialog open={openBlockDialog} onClose={handleCloseBlockDialog}>

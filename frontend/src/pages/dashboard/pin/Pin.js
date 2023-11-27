@@ -1,36 +1,65 @@
 // @mui
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Button, TextField, Box, Grid } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 // hooks
 import useSettings from "../../../hooks/useSettings";
 // components
 import Page from "../../../components/Page";
+import Image from 'src/components/Image';
+//image
+import uploadFile from "../../../img/Vector.png";
 
 
 // ----------------------------------------------------------------------
 
-export default function () {
+export default function Home() {
     const { themeStretch } = useSettings();
 
     return (
         <Page title="Home">
             <Container maxWidth={themeStretch ? false : 'xl'}>
-                <Typography variant="h3" component="h1" paragraph>
-                    Page Template
-                </Typography>
-                <Typography gutterBottom>
-                    Curabitur turpis. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod
-                    ligula urna in dolor. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Phasellus blandit leo
-                    ut odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id
-                    purus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. In consectetuer turpis ut velit.
-                    Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
-                    Vestibulum suscipit nulla quis orci. Nam commodo suscipit quam. Sed a libero.
-                </Typography>
-                <Typography>
-                    Praesent ac sem eget est egestas volutpat. Phasellus viverra nulla ut metus varius laoreet. Curabitur
-                    ullamcorper ultricies nisi. Ut non enim eleifend felis pretium feugiat. Donec mi odio, faucibus at,
-                    scelerisque quis, convallis in, nisi. Fusce vel dui. Quisque libero metus, condimentum nec, tempor a, commodo
-                    mollis, magna. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Cras dapibus.
-                </Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={6} sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'relative',
+                        height: '70vh',
+                        width: '80vh',
+                        border: '2px dashed rgba(0, 0, 0, 0.2)',
+                        padding: 3,
+                    }}>
+                        <Image
+                            src={uploadFile}
+                            sx={{ top: 68, width: 60, height: 30, }}
+                        />
+                        <Typography sx={{ top: 133.5, fontWeight: 600 }}>Drag and drop here</Typography>
+                        <Typography sx={{ top: 180.5 }}>JPG, PNG or PDF, file size no more than 20MB</Typography>
+                        <Button variant='outlined' size='large' sx={{ top: 100, width: 120, height: 36 }}>Select file</Button>
+
+
+                    </Grid>
+                    <Grid item xs={6} sx={{ left: 1000, position: 'absolute' }}>
+                        <Typography>Title</Typography>
+                        <TextField id="outlined-basic" label="Add your title" variant="outlined" />
+                        <Typography>Caption</Typography>
+                        <TextField id="outlined-basic" label="Tell everyone what your Pin is about" variant="outlined" />
+                        <Typography>Link</Typography>
+                        <TextField id="outlined-basic" label="Add a destination link" variant="outlined" />
+                        <Typography>Category</Typography>
+
+                        <Select sx={{ width: 222 }}
+
+                        >
+                            <MenuItem value={10}>Arabic Poetry</MenuItem>
+                            <MenuItem value={20}>Learning Korean grammar</MenuItem>
+                            <MenuItem value={30}>Book</MenuItem>
+                            <MenuItem value={30}>Art</MenuItem>
+                        </Select>
+                    </Grid>
+                </Grid>
             </Container>
         </Page>
     );
